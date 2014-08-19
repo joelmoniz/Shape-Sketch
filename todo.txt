@@ -1,0 +1,17 @@
+As of 0.0.1
+[]Add ellipse
+[]Add circle
+[]Add rect
+[]Add square
+[]Add fill
+[]Add cursor tracker
+[]Add colour picker
+[]Label on hover
+[]Add general polygon
+[]Length, breadth of rect/sq
+[]Axes of ellipse
+[]Add general line
+[]Add object eraser
+[]Add object mover
+[]Add object resizer
+[]Add object rotator

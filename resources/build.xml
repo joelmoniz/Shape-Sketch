@@ -1,4 +1,4 @@
-<project name="ProcessingTools" default="clean" basedir="../">
+<project name="ShapeSketch" default="clean" basedir="../">
 
     
 <!--	
