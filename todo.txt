@@ -1,17 +1,26 @@
+#List of stuff to do. 
+#Read bottom up to get priority order.
+
 As of 0.0.1
+[]Add object rotator
+[]Add object resizer
+[]Add object mover
+[]Add object eraser
+[]Add fill
+[]Print axes of ellipse
+[]Axes of ellipse
+[]Add general polygon
+[]Print Length, breadth of rect/sq
+[]Add general line
+x--Etd. ready for release--x
+[]Add background
+[]Label on hoverd selector
+[]Add colour picker
+[]Add fill color selector
+[]Add stroke color selector
+[]Add stroke width selector
+[]Add cursor tracker
 []Add ellipse
 []Add circle
 []Add rect
 []Add square
-[]Add fill
-[]Add cursor tracker
-[]Add colour picker
-[]Label on hover
-[]Add general polygon
-[]Length, breadth of rect/sq
-[]Axes of ellipse
-[]Add general line
-[]Add object eraser
-[]Add object mover
-[]Add object resizer
-[]Add object rotator
