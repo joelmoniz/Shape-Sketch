@@ -30,7 +30,7 @@ public class GUIFrame extends JFrame{
 		outerPanel = new JPanel(new BorderLayout());
 		// TODO: Set sizes here, incl margins, size(x,y), etc.
 		
-		setupGUIFrame();
+		setupGUIFrameComponents();
 		
 		pack();
 	}
@@ -41,8 +41,9 @@ public class GUIFrame extends JFrame{
 		return mainFrame;
 	}
 	
-	public void setupGUIFrame() {
+	public void setupGUIFrameComponents() {
 		outerPanel.add(new ShapeToolbar(250),BorderLayout.LINE_START);
+		outerPanel.add(new OptionsToolbar(250),BorderLayout.PAGE_START);
 		add(outerPanel);
 	}
 	
