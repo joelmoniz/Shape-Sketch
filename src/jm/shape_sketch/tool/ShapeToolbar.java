@@ -10,15 +10,19 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-@SuppressWarnings("serial")
 public class ShapeToolbar extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1467297274836144485L;
+
 	private int height;
 	
 	public static final int WIDTH = 25;
 	public static final int IMAGE_WIDTH = 19;
 	public static final int HORIZONTAL_BN_BORDER = (WIDTH-IMAGE_WIDTH)/2;
 	public static final int VERTICAL_BN_BORDER = 1;
-	public static final Color BACKGROUND = Color.BLACK;
+	public static final Color BACKGROUND = new Color(110,110,110);
 
 	public ShapeToolbar(int length) {
 		super();
@@ -31,6 +35,7 @@ public class ShapeToolbar extends JPanel {
 		setBackground(BACKGROUND);
 
 		add(addButton("data/rect.png", "rectangleButton", "data/rect.png"));
+		add(addButton("data/square.png", "squareButton", "data/square.png"));
 		add(addButton("data/circle.png", "circleButton", "data/circle.png"));
 	}
 
@@ -52,7 +57,7 @@ public class ShapeToolbar extends JPanel {
 		// b.setMargin(new Insets(0, 0, 0, 0));
 		// b.setSize(d);
 		b.setFocusPainted(false);
-		b.setBackground(Color.black);
+		b.setBackground(BACKGROUND);
 		Border emptyBorder = BorderFactory.createEmptyBorder(
 				VERTICAL_BN_BORDER, HORIZONTAL_BN_BORDER, VERTICAL_BN_BORDER,
 				HORIZONTAL_BN_BORDER);
