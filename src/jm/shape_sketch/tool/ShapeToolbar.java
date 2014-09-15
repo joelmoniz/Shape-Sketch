@@ -34,18 +34,18 @@ public class ShapeToolbar extends JPanel {
 		setMaximumSize(new Dimension(WIDTH, height));
 		setBackground(BACKGROUND);
 
-		add(addButton("data/rect.png", "rectangleButton", "data/rect.png"));
-		add(addButton("data/square.png", "squareButton", "data/square.png"));
-		add(addButton("data/circle.png", "circleButton", "data/circle.png"));
+		add(addButton("/data/rect.png", "rectangleButton", "/data/rect.png"));
+		add(addButton("/data/square.png", "squareButton", "/data/square.png"));
+		add(addButton("/data/circle.png", "circleButton", "/data/circle.png"));
 	}
 
 	private JButton addButton(String imageLocation, String buttonName,
 			String rolloverImageLocation) {
 		JButton b = new JButton();
-		ImageIcon icon = new ImageIcon(//this.getClass().getResource(
-				imageLocation);
-		ImageIcon rolloverIcon = new ImageIcon(//this.getClass().getResource(
-				rolloverImageLocation);
+		ImageIcon icon = new ImageIcon(this.getClass().getResource(
+				imageLocation));
+		ImageIcon rolloverIcon = new ImageIcon(this.getClass().getResource(
+				rolloverImageLocation));
 		// b.setLayout(new BorderLayout());
 		// b.setIcon(icon);
 		// JLabel label = new JLabel(icon);
