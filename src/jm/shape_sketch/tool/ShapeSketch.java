@@ -23,37 +23,37 @@
  * @version		##version##
  */
 
- package jm.shape_sketch.tool;
- 
- import processing.app.*;
- import processing.app.tools.*;
- 
- 
- 
- public class ShapeSketch implements Tool {
- 
- // when creating a tool, the name of the main class which implements Tool
- // must be the same as the value defined for project.name in your build.properties
- 
-	 public static final String TOOL_NAME = "##tool.name##";
- 
+package jm.shape_sketch.tool;
+
+import processing.app.*;
+import processing.app.tools.*;
+
+public class ShapeSketch implements Tool {
+
+	// when creating a tool, the name of the main class which implements Tool
+	// must be the same as the value defined for project.name in your
+	// build.properties
+
+	public static final String TOOL_NAME = "##tool.name##";
+
+	@Override
 	public String getMenuTitle() {
 		return TOOL_NAME;
 	}
- 
+
+	@Override
 	public void init(Editor theEditor) {
 	}
- 
+
+	@Override
 	public void run() {
-		System.out.println(TOOL_NAME +" v##tool.prettyVersion## by ##author##");
+		System.out
+				.println(TOOL_NAME + " v##tool.prettyVersion## by ##author##");
 		GUIFrame.getGUIFrame().setVisible(true);
 	}
-	
+
 	public static void main(String[] args) {
 		new ShapeSketch().run();
 	}
- 
- }
 
-
-
+}
