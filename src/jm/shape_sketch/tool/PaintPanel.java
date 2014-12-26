@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -66,7 +67,8 @@ public class PaintPanel extends JPanel {
 				if (currentShapeType != null) {
 					x2 = m.getX();
 					y2 = m.getY();
-					currentShape.setEndPoint(new Dimension(x2 - x1, y2 - y1));
+					currentShape.setStartingPoint(new Point(Math.min(x1, x2), Math.min(y1, y2)));
+					currentShape.setEndPoint(new Dimension(Math.abs(x2 - x1), Math.abs(y2 - y1)));
 					shapesList.add(currentShape);
 					currentShape = null;
 					repaint();
@@ -78,7 +80,10 @@ public class PaintPanel extends JPanel {
 				if (currentShapeType != null) {
 					x2 = m.getX();
 					y2 = m.getY();
-					currentShape.setEndPoint(new Dimension(x2 - x1, y2 - y1));
+					
+//					currentShape.setEndPoint(new Dimension(x2 - x1, y2 - y1));
+					currentShape.setStartingPoint(new Point(Math.min(x1, x2), Math.min(y1, y2)));
+					currentShape.setEndPoint(new Dimension(Math.abs(x2 - x1), Math.abs(y2 - y1)));
 					repaint();
 				}
 			}
