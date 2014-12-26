@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import jm.shape_sketch.tool.shapes.Shape;
+import jm.shape_sketch.tool.shapes.Shape.ShapeTypes;
 
 public class PaintPanel extends JPanel {
 	private static final long serialVersionUID = 3592247058189697712L;
@@ -23,6 +24,8 @@ public class PaintPanel extends JPanel {
 
 	private List<Shape> shapesList = null;
 	private Shape currentShape = null;
+	
+	private ShapeTypes currentShapeType = null;
 
 	public static PaintPanel getPaintPanel(Dimension size) {
 		if (paintPanel == null && size != null)
@@ -46,11 +49,13 @@ public class PaintPanel extends JPanel {
 
 		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent m) {
-				if (currentShape != null) {
+				if (currentShapeType != null) {
 					x1 = m.getX();
 					y1 = m.getY();
 					x2 = x1;
 					y2 = y1;
+					if (currentShape == null)
+						currentShape = new Shape(currentShapeType);
 					currentShape.setStartingPoint(m.getPoint());
 					currentShape.setEndPoint(new Dimension(x2 - x1, y2 - y1));
 					repaint();
@@ -58,7 +63,7 @@ public class PaintPanel extends JPanel {
 			}
 
 			public void mouseReleased(MouseEvent m) {
-				if (currentShape != null) {
+				if (currentShapeType != null) {
 					x2 = m.getX();
 					y2 = m.getY();
 					currentShape.setEndPoint(new Dimension(x2 - x1, y2 - y1));
@@ -70,7 +75,7 @@ public class PaintPanel extends JPanel {
 		});
 		addMouseMotionListener(new MouseMotionAdapter() {
 			public void mouseDragged(MouseEvent m) {
-				if (currentShape != null) {
+				if (currentShapeType != null) {
 					x2 = m.getX();
 					y2 = m.getY();
 					currentShape.setEndPoint(new Dimension(x2 - x1, y2 - y1));
@@ -90,6 +95,8 @@ public class PaintPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// g.drawRect(x1, y1, x2 - x1, y2 - y1);
+		for (Shape drawn: shapesList)
+			drawn.drawShape(g);
 		if (currentShape != null)
 			currentShape.drawShape(g);
 	}
@@ -100,6 +107,14 @@ public class PaintPanel extends JPanel {
 
 	public void setCurrentShape(Shape currentShape) {
 		this.currentShape = currentShape;
+	}
+
+	public ShapeTypes getCurrentShapeType() {
+		return currentShapeType;
+	}
+
+	public void setCurrentShapeType(ShapeTypes currentShapeType) {
+		this.currentShapeType = currentShapeType;
 	}
 
 }

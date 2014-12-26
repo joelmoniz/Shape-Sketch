@@ -1,5 +1,6 @@
 package jm.shape_sketch.tool.shapes;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -136,6 +137,7 @@ public class Shape {
 	public void drawShape(Graphics g) {
 		switch (type) {
 		case CIRCLE:
+//			g.setColor(Color.BLUE);
 			g.drawOval(startingPoint.x, startingPoint.y, dim.width, dim.height);
 			break;
 		case ELLIPSE:
@@ -149,9 +151,11 @@ public class Shape {
 		case POLYGON:
 			break;
 		case RECTANGLE:
+//			g.setColor(Color.RED);
 			g.drawRect(startingPoint.x, startingPoint.y, dim.width, dim.height);
 			break;
 		case SQUARE:
+//			g.setColor(Color.RED);
 			g.drawRect(startingPoint.x, startingPoint.y, dim.width, dim.height);
 			break;
 		default:

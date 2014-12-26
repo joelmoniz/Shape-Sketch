@@ -119,24 +119,24 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getActionCommand().equals(SQUARE_BUTTON_NAME)) {
-			PaintPanel.getPaintPanel().setCurrentShape(new Shape(ShapeTypes.SQUARE));
-			System.out.println("Here");
-		}
-		else if (e.getActionCommand().equals(RECT_BUTTON_NAME)) {
-			PaintPanel.getPaintPanel().setCurrentShape(new Shape(ShapeTypes.RECTANGLE));
-			System.out.println("Here");
-		}
+		if (e.getActionCommand().equals(SQUARE_BUTTON_NAME)) //{
+			PaintPanel.getPaintPanel().setCurrentShapeType(ShapeTypes.SQUARE);//(new Shape(ShapeTypes.SQUARE));
+//			System.out.println("Here");
+//		}
+		else if (e.getActionCommand().equals(RECT_BUTTON_NAME)) //{
+			PaintPanel.getPaintPanel().setCurrentShapeType(ShapeTypes.RECTANGLE);//(new Shape(ShapeTypes.RECTANGLE));
+//			System.out.println("Here");
+//		}
 		else if (e.getActionCommand().equals(CIRCLE_BUTTON_NAME))
-			PaintPanel.getPaintPanel().setCurrentShape(new Shape(ShapeTypes.CIRCLE));
+			PaintPanel.getPaintPanel().setCurrentShapeType(ShapeTypes.CIRCLE);//(new Shape(ShapeTypes.CIRCLE));
 		else if (e.getActionCommand().equals(ELLIPSE_BUTTON_NAME))
-			PaintPanel.getPaintPanel().setCurrentShape(new Shape(ShapeTypes.ELLIPSE));
+			PaintPanel.getPaintPanel().setCurrentShapeType(ShapeTypes.ELLIPSE);//(new Shape(ShapeTypes.ELLIPSE));
 		else if (e.getActionCommand().equals(LINE_BUTTON_NAME))
-			PaintPanel.getPaintPanel().setCurrentShape(new Shape(ShapeTypes.LINE));
+			PaintPanel.getPaintPanel().setCurrentShapeType(ShapeTypes.LINE);//(new Shape(ShapeTypes.LINE));
 		else if (e.getActionCommand().equals(POINT_BUTTON_NAME))
-			PaintPanel.getPaintPanel().setCurrentShape(new Shape(ShapeTypes.POINT));
+			PaintPanel.getPaintPanel().setCurrentShapeType(ShapeTypes.POINT);//(new Shape(ShapeTypes.POINT));
 		else if (e.getActionCommand().equals(POLYGON_BUTTON_NAME))
-			PaintPanel.getPaintPanel().setCurrentShape(new Shape(ShapeTypes.POLYGON));
+			PaintPanel.getPaintPanel().setCurrentShapeType(ShapeTypes.POLYGON);//(new Shape(ShapeTypes.POLYGON));
 	}
 
 }
