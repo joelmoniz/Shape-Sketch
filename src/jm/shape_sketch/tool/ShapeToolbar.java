@@ -7,15 +7,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonModel;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
+import javax.swing.JRadioButton;
 import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 import jm.shape_sketch.tool.shapes.Shape.ShapeTypes;
 
@@ -27,8 +24,8 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 
 	private int height;
 
-	public static final int WIDTH = 30;
-	public static final int IMAGE_WIDTH = 25;
+	public static final int WIDTH = 31;
+	public static final int IMAGE_WIDTH = 27;
 	public static final int HORIZONTAL_BN_BORDER = (WIDTH - IMAGE_WIDTH) / 2;
 	public static final int VERTICAL_BN_BORDER = 1;
 	public static final int EXTRA_PANEL_HEIGHT = 4;
@@ -75,15 +72,17 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 
 		// add(addButton("/data/rect.png", "rectangleButton",
 		// "/data/rect.png"));
-		add(addButton(SQUARE_BUTTON_IMG_LOCN, SQUARE_BUTTON_NAME,
-				SQUARE_BUTTON_ROLLOVER_LOCN, SQUARE_BUTTON_SELECT_LOCN));
-		add(addButton(CIRCLE_BUTTON_IMG_LOCN, CIRCLE_BUTTON_NAME,
-				CIRCLE_BUTTON_ROLLOVER_LOCN, CIRCLE_BUTTON_SELECT_LOCN));
+		ButtonGroup group = new ButtonGroup();
+		add(addRadioButton(SQUARE_BUTTON_IMG_LOCN, SQUARE_BUTTON_NAME,
+				SQUARE_BUTTON_ROLLOVER_LOCN, SQUARE_BUTTON_SELECT_LOCN, group));
+		add(addRadioButton(CIRCLE_BUTTON_IMG_LOCN, CIRCLE_BUTTON_NAME,
+				CIRCLE_BUTTON_ROLLOVER_LOCN, CIRCLE_BUTTON_SELECT_LOCN, group));
 	}
 
-	private JPanel addButton(String imageLocation, String buttonName,
-			String rolloverImageLocation, String selectImageLocation) {
-		final JButton b = new JButton();
+	private JRadioButton addRadioButton(String imageLocation, String buttonName,
+			String rolloverImageLocation, String selectImageLocation,
+			ButtonGroup group) {
+		final JRadioButton b = new JRadioButton();
 		ImageIcon icon = new ImageIcon(this.getClass().getResource(
 				imageLocation));
 		ImageIcon rolloverIcon = new ImageIcon(this.getClass().getResource(
@@ -112,31 +111,30 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 		b.setOpaque(false);
 		b.setContentAreaFilled(false);
 		b.setBorderPainted(false);
-//		final Border raisedBevelBorder = BorderFactory
-//				.createRaisedBevelBorder();
-		final Border emptyBorder = 
-//		new EmptyBorder(
-//				raisedBevelBorder.getBorderInsets(b));
-		 BorderFactory.createEmptyBorder(
-		 VERTICAL_BN_BORDER, HORIZONTAL_BN_BORDER, VERTICAL_BN_BORDER,
-		 HORIZONTAL_BN_BORDER);
+		// final Border raisedBevelBorder = BorderFactory
+		// .createRaisedBevelBorder();
+		final Border emptyBorder =
+		// new EmptyBorder(
+		// raisedBevelBorder.getBorderInsets(b));
+		BorderFactory.createEmptyBorder(VERTICAL_BN_BORDER,
+				HORIZONTAL_BN_BORDER, VERTICAL_BN_BORDER, HORIZONTAL_BN_BORDER);
 		b.setBorder(emptyBorder);
 
-//		b.getModel().addChangeListener(new ChangeListener() {
-//			@Override
-//			public void stateChanged(ChangeEvent e) {
-//				ButtonModel model = (ButtonModel) e.getSource();
-//				if (model.isRollover()) {
-//					// b.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-//					b.setOpaque(true);
-//					b.setContentAreaFilled(true);
-//				} else {
-//					b.setBorder(emptyBorder);
-//					b.setOpaque(false);
-//					b.setContentAreaFilled(false);
-//				}
-//			}
-//		});
+		// b.getModel().addChangeListener(new ChangeListener() {
+		// @Override
+		// public void stateChanged(ChangeEvent e) {
+		// ButtonModel model = (ButtonModel) e.getSource();
+		// if (model.isRollover()) {
+		// // b.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+		// b.setOpaque(true);
+		// b.setContentAreaFilled(true);
+		// } else {
+		// b.setBorder(emptyBorder);
+		// b.setOpaque(false);
+		// b.setContentAreaFilled(false);
+		// }
+		// }
+		// });
 
 		// b.setMargin(new Insets(0, 0, 0, 0));
 		b.setName(buttonName);
@@ -144,17 +142,19 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 
 		b.addActionListener(this);
 
-		JPanel p = new JPanel();
-		Dimension panelDimension = new Dimension(IMAGE_WIDTH + 2
-				* HORIZONTAL_BN_BORDER, IMAGE_WIDTH + 2 * VERTICAL_BN_BORDER
-				+ EXTRA_PANEL_HEIGHT);
-		p.setPreferredSize(panelDimension);
-		p.setMinimumSize(panelDimension);
-		p.setMaximumSize(panelDimension);
-		p.setBackground(BACKGROUND);
-		p.add(b);
-
-		return p;
+//		JPanel p = new JPanel();
+//		Dimension panelDimension = new Dimension(IMAGE_WIDTH + 2
+//				* HORIZONTAL_BN_BORDER, IMAGE_WIDTH + 2 * VERTICAL_BN_BORDER
+//				+ EXTRA_PANEL_HEIGHT);
+//		p.setPreferredSize(panelDimension);
+//		p.setMinimumSize(panelDimension);
+//		p.setMaximumSize(panelDimension);
+//		p.setBackground(BACKGROUND);
+//		p.add(b);
+//
+//		return p;
+		group.add(b);
+		return b;
 	}
 
 	@Override
@@ -162,14 +162,14 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 		if (e.getActionCommand().equals(SQUARE_BUTTON_NAME)) // {
 			PaintPanel.getPaintPanel().setCurrentShapeType(ShapeTypes.SQUARE);// (new
 																				// Shape(ShapeTypes.SQUARE));
-			// System.out.println("Here");
-			// }
+		// System.out.println("Here");
+		// }
 		else if (e.getActionCommand().equals(RECT_BUTTON_NAME)) // {
 			PaintPanel.getPaintPanel()
 					.setCurrentShapeType(ShapeTypes.RECTANGLE);// (new
 																// Shape(ShapeTypes.RECTANGLE));
-			// System.out.println("Here");
-			// }
+		// System.out.println("Here");
+		// }
 		else if (e.getActionCommand().equals(CIRCLE_BUTTON_NAME))
 			PaintPanel.getPaintPanel().setCurrentShapeType(ShapeTypes.CIRCLE);// (new
 																				// Shape(ShapeTypes.CIRCLE));
