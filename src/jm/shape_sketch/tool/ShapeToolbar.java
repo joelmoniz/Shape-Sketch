@@ -9,7 +9,6 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.Border;
@@ -32,21 +31,21 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 	public static final Color BACKGROUND = new Color(240, 240, 240);
 
 	private static final String SQUARE_BUTTON_NAME = "squareButton";
-	private static final String SQUARE_BUTTON_IMG_LOCN = "/data/square2.png";
-	private static final String SQUARE_BUTTON_ROLLOVER_LOCN = "/data/square2.png";
-	private static final String SQUARE_BUTTON_SELECT_LOCN = "/data/square.png";
+	private static final String SQUARE_BUTTON_IMG_LOCN = "/data/square3.png";
+	private static final String SQUARE_BUTTON_ROLLOVER_LOCN = "/data/square_rollover.png";
+	private static final String SQUARE_BUTTON_SELECT_LOCN = "/data/square_selected.png";
 	private static final String RECT_BUTTON_NAME = "rectangleButton";
-	private static final String RECT_BUTTON_IMG_LOCN = "/data/rect.png";
-	private static final String RECT_BUTTON_ROLLOVER_LOCN = "/data/rect.png";
-	private static final String RECT_BUTTON_SELECT_LOCN = "/data/rect.png";
+	private static final String RECT_BUTTON_IMG_LOCN = "/data/rectangle.png";
+	private static final String RECT_BUTTON_ROLLOVER_LOCN = "/data/rectangle_rollover.png";
+	private static final String RECT_BUTTON_SELECT_LOCN = "/data/rectangle_selected.png";
 	private static final String CIRCLE_BUTTON_NAME = "circleButton";
-	private static final String CIRCLE_BUTTON_IMG_LOCN = "/data/circle.png";
-	private static final String CIRCLE_BUTTON_ROLLOVER_LOCN = "/data/circle_rollover.png";
-	private static final String CIRCLE_BUTTON_SELECT_LOCN = "/data/circle_selected.png";
+	private static final String CIRCLE_BUTTON_IMG_LOCN = "/data/circle4.png";
+	private static final String CIRCLE_BUTTON_ROLLOVER_LOCN = "/data/circle_rollover4.png";
+	private static final String CIRCLE_BUTTON_SELECT_LOCN = "/data/circle_selected4.png";
 	private static final String ELLIPSE_BUTTON_NAME = "ellipseButton";
-	private static final String ELLIPSE_BUTTON_IMG_LOCN = "/data/ellipse.png";
-	private static final String ELLIPSE_BUTTON_ROLLOVER_LOCN = "/data/ellipse.png";
-	private static final String ELLIPSE_BUTTON_SELECT_LOCN = "/data/ellipse.png";
+	private static final String ELLIPSE_BUTTON_IMG_LOCN = "/data/ellipse5.png";
+	private static final String ELLIPSE_BUTTON_ROLLOVER_LOCN = "/data/ellipse_rollover5.png";
+	private static final String ELLIPSE_BUTTON_SELECT_LOCN = "/data/ellipse_selected5.png";
 	private static final String LINE_BUTTON_NAME = "lineButton";
 	private static final String LINE_BUTTON_IMG_LOCN = "/data/line.png";
 	private static final String LINE_BUTTON_ROLLOVER_LOCN = "/data/line.png";
@@ -72,11 +71,16 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 
 		// add(addButton("/data/rect.png", "rectangleButton",
 		// "/data/rect.png"));
+
 		ButtonGroup group = new ButtonGroup();
 		add(addRadioButton(SQUARE_BUTTON_IMG_LOCN, SQUARE_BUTTON_NAME,
 				SQUARE_BUTTON_ROLLOVER_LOCN, SQUARE_BUTTON_SELECT_LOCN, group));
 		add(addRadioButton(CIRCLE_BUTTON_IMG_LOCN, CIRCLE_BUTTON_NAME,
 				CIRCLE_BUTTON_ROLLOVER_LOCN, CIRCLE_BUTTON_SELECT_LOCN, group));
+		add(addRadioButton(ELLIPSE_BUTTON_IMG_LOCN, ELLIPSE_BUTTON_NAME,
+				ELLIPSE_BUTTON_ROLLOVER_LOCN, ELLIPSE_BUTTON_SELECT_LOCN, group));
+		add(addRadioButton(RECT_BUTTON_IMG_LOCN, RECT_BUTTON_NAME,
+				RECT_BUTTON_ROLLOVER_LOCN, RECT_BUTTON_SELECT_LOCN, group));
 	}
 
 	private JRadioButton addRadioButton(String imageLocation, String buttonName,
