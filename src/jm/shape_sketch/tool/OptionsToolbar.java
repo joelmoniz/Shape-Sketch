@@ -70,6 +70,7 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 		add(addButton("/data/size.png", "background", "/data/size_rollover.png", "/data/size_selected.png"));
 		add(addButton("/data/bug.png", "background", "/data/bug_rollover.png", "/data/bug_selected.png"));
 		add(addButton("/data/help.png", "background", "/data/help_rollover.png", "/data/help_selected.png"));
+		add(addButton("/data/reset.png", "background", "/data/reset_rollover.png", "/data/reset_selected.png"));
 		// Add fill toggle
 		// Add background toggle
 	}

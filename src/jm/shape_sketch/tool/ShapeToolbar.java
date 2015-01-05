@@ -48,16 +48,16 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 	private static final String ELLIPSE_BUTTON_SELECT_LOCN = "/data/ellipse_selected5.png";
 	private static final String LINE_BUTTON_NAME = "lineButton";
 	private static final String LINE_BUTTON_IMG_LOCN = "/data/line.png";
-	private static final String LINE_BUTTON_ROLLOVER_LOCN = "/data/line.png";
-	private static final String LINE_BUTTON_SELECT_LOCN = "/data/line.png";
+	private static final String LINE_BUTTON_ROLLOVER_LOCN = "/data/line_rollover.png";
+	private static final String LINE_BUTTON_SELECT_LOCN = "/data/line_selected.png";
 	private static final String POINT_BUTTON_NAME = "pointButton";
 	private static final String POINT_BUTTON_IMG_LOCN = "/data/point.png";
 	private static final String POINT_BUTTON_ROLLOVER_LOCN = "/data/point.png";
 	private static final String POINT_BUTTON_SELECT_LOCN = "/data/point.png";
 	private static final String POLYGON_BUTTON_NAME = "polygonButton";
 	private static final String POLYGON_BUTTON_IMG_LOCN = "/data/polygon.png";
-	private static final String POLYGON_BUTTON_ROLLOVER_LOCN = "/data/polygon.png";
-	private static final String POLYGON_BUTTON_SELECT_LOCN = "/data/polygon.png";
+	private static final String POLYGON_BUTTON_ROLLOVER_LOCN = "/data/polygon_rollover.png";
+	private static final String POLYGON_BUTTON_SELECT_LOCN = "/data/polygon_selected.png";
 
 	public ShapeToolbar(int length) {
 		super();
@@ -81,6 +81,10 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 				ELLIPSE_BUTTON_ROLLOVER_LOCN, ELLIPSE_BUTTON_SELECT_LOCN, group));
 		add(addRadioButton(RECT_BUTTON_IMG_LOCN, RECT_BUTTON_NAME,
 				RECT_BUTTON_ROLLOVER_LOCN, RECT_BUTTON_SELECT_LOCN, group));
+		add(addRadioButton(LINE_BUTTON_IMG_LOCN, LINE_BUTTON_NAME,
+				LINE_BUTTON_ROLLOVER_LOCN, LINE_BUTTON_SELECT_LOCN, group));
+		add(addRadioButton(POLYGON_BUTTON_IMG_LOCN, POLYGON_BUTTON_NAME,
+				POLYGON_BUTTON_ROLLOVER_LOCN, POLYGON_BUTTON_SELECT_LOCN, group));
 	}
 
 	private JRadioButton addRadioButton(String imageLocation, String buttonName,
