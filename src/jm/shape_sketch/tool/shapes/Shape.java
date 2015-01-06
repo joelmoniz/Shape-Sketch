@@ -29,14 +29,33 @@ public class Shape {
 	public ShapeTypes type = null;
 
 	public Shape(ShapeTypes type) {
-		this.type = type;
+		this.type = type;	
+		
+		switch (type) {
+		case RECTANGLE:
+			rectangle = new Rectangle();//startingPoint, dim);
+			break;
+		case ELLIPSE:
+			ellipse = new Ellipse2D.Double();
+//			ellipse.setFrame(startingPoint, dim);
+			break;
+		case LINE:
+			line = new Line2D.Double();//startingPoint, new Point(dim.width + startingPoint.x, dim.height + startingPoint.y));
+			break;
+		case POINT:
+			break;
+		case POLYGON:
+			break;
+		default:
+			break;
+		}
 	}
 
 	public void setStartingPoint(Point p) {
 		startingPoint = p;
 	}
 	
-	public void setEndPoint(Dimension d) {
+	public void setDimension(Dimension d) {
 		dim = d;
 		
 		switch (type) {
@@ -44,92 +63,30 @@ public class Shape {
 			rectangle = new Rectangle(startingPoint, dim);
 			break;
 		case ELLIPSE:
-			ellipse = new Ellipse2D() {
-
-				@Override
-				public Rectangle2D getBounds2D() {
-					return null;
-				}
-
-				@Override
-				public double getHeight() {
-					return this.getHeight();
-				}
-
-				@Override
-				public double getWidth() {
-					return this.getWidth();
-				}
-
-				@Override
-				public double getX() {
-					return this.getCenterX();
-				}
-
-				@Override
-				public double getY() {
-					return this.getCenterY();
-				}
-
-				@Override
-				public boolean isEmpty() {
-					return false;
-				}
-
-				@Override
-				public void setFrame(double arg0, double arg1, double arg2,
-						double arg3) {}
-
-			};
+			ellipse = new Ellipse2D.Double();
 			ellipse.setFrame(startingPoint, dim);
 			break;
 		case LINE:
-			line = new Line2D() {
-				
-				@Override
-				public Rectangle2D getBounds2D() {
-					return null;
-				}
-				
-				@Override
-				public void setLine(double x1, double y1, double x2, double y2) {}
-				
-				@Override
-				public double getY2() {
-					return 0;
-				}
-				
-				@Override
-				public double getY1() {
-					return 0;
-				}
-				
-				@Override
-				public double getX2() {
-					return 0;
-				}
-				
-				@Override
-				public double getX1() {
-					return 0;
-				}
-				
-				@Override
-				public Point2D getP2() {
-					return null;
-				}
-				
-				@Override
-				public Point2D getP1() {
-					return null;
-				}
-			};
+			line = new Line2D.Double(startingPoint, new Point(dim.width, dim.height));
 			break;
 		case POINT:
 			break;
 		case POLYGON:
 			break;
 		default:
+			break;
+		}
+	}
+	
+	public void setEndPoints(int x1, int x2, int y1, int y2) {
+		switch (type) {
+		case LINE:
+			setStartingPoint(new Point(x1,y1));
+			setDimension(new Dimension(x2-x1,y2-y1));
+			break;
+		default:
+			setStartingPoint(new Point(Math.min(x1, x2), Math.min(y1, y2)));
+			setDimension(new Dimension(Math.abs(x2 - x1), Math.abs(y2 - y1)));
 			break;
 		}
 	}
@@ -144,7 +101,7 @@ public class Shape {
 			g.drawOval(startingPoint.x, startingPoint.y, dim.width, dim.height);
 			break;
 		case LINE:
-//			g.drawLine(startingPoint.x, startingPoint.y, dim.width, dim.height);
+			g.drawLine(startingPoint.x, startingPoint.y, dim.width + startingPoint.x, dim.height + startingPoint.y);
 			break;
 		case POINT:
 			break;

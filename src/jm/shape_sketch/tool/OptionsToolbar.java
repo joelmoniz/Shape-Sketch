@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.Border;
 
+import processing.app.ColorChooser;
+
 public class OptionsToolbar extends JPanel implements ActionListener {
 
 	/**
