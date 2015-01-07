@@ -70,7 +70,23 @@ public class PaintPanel extends JPanel {
 					y2 = m.getY();
 //					currentShape.setStartingPoint(new Point(Math.min(x1, x2), Math.min(y1, y2)));
 //					currentShape.setEndPoint(new Dimension(Math.abs(x2 - x1), Math.abs(y2 - y1)));
-					currentShape.setEndPoints(x1, x2, y1, y2);
+					
+					Dimension panelSize = getSize();
+					if (x2 <= panelSize.getWidth() && y2 <= panelSize.getHeight() && x2 >= 0 && y2 >= 0) {
+						// currentShape.setStartingPoint(new Point(Math.min(x1,
+						// x2), Math.min(y1, y2)));
+						// currentShape.setDimension(new Dimension(Math.abs(x2 -
+						// x1), Math.abs(y2 - y1)));
+						currentShape.setEndPoints(x1, x2, y1, y2);
+					}
+					else {
+						int x2n, y2n;
+						System.out.println("x: ");
+						x2n = x2>=0 ? Math.min(x2, panelSize.width - 1) : 0;
+						y2n = y2>=0 ? Math.min(y2, panelSize.height - 1) : 0;
+						currentShape.setEndPoints(x1, x2n, y1, y2n);
+					}
+					
 					shapesList.add(currentShape);
 					currentShape = null;
 					repaint();
@@ -83,9 +99,21 @@ public class PaintPanel extends JPanel {
 					x2 = m.getX();
 					y2 = m.getY();
 					
-//					currentShape.setStartingPoint(new Point(Math.min(x1, x2), Math.min(y1, y2)));
-//					currentShape.setDimension(new Dimension(Math.abs(x2 - x1), Math.abs(y2 - y1)));
-					currentShape.setEndPoints(x1, x2, y1, y2);
+					Dimension panelSize = getSize();
+					if (x2 <= panelSize.getWidth() && y2 <= panelSize.getHeight() && x2 >= 0 && y2 >= 0) {
+						// currentShape.setStartingPoint(new Point(Math.min(x1,
+						// x2), Math.min(y1, y2)));
+						// currentShape.setDimension(new Dimension(Math.abs(x2 -
+						// x1), Math.abs(y2 - y1)));
+						currentShape.setEndPoints(x1, x2, y1, y2);
+					}
+					else {
+						int x2n, y2n;
+						System.out.println("x: ");
+						x2n = x2>=0 ? Math.min(x2, panelSize.width - 1) : 0;
+						y2n = y2>=0 ? Math.min(y2, panelSize.height - 1) : 0;
+						currentShape.setEndPoints(x1, x2n, y1, y2n);
+					}
 					repaint();
 				}
 			}
