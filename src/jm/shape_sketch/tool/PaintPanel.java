@@ -81,7 +81,6 @@ public class PaintPanel extends JPanel {
 					}
 					else {
 						int x2n, y2n;
-						System.out.println("x: ");
 						x2n = x2>=0 ? Math.min(x2, panelSize.width - 1) : 0;
 						y2n = y2>=0 ? Math.min(y2, panelSize.height - 1) : 0;
 						currentShape.setEndPoints(x1, x2n, y1, y2n);
