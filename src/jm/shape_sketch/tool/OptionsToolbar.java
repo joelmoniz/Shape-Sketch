@@ -11,7 +11,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.border.Border;
 
 import processing.app.ColorChooser;
@@ -22,6 +21,8 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 2679779333943632914L;
+	
+	private static OptionsToolbar optionsToolbar;
 	private int width;
 	public static final int HEIGHT = 31;
 	public static final int IMAGE_HEIGHT = 27;
@@ -32,7 +33,13 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 
 	private static final String DIVIDER_IMG_LOCN = "/data/divider.png";
 
-	public OptionsToolbar(int length) {
+	public static OptionsToolbar getOptionsToolbar(int length) {
+		if (optionsToolbar == null)
+			optionsToolbar = new OptionsToolbar(length);
+		return optionsToolbar;
+	}
+
+	private OptionsToolbar(int length) {
 		super();
 		this.width = length;
 

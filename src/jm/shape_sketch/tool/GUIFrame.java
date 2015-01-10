@@ -30,8 +30,8 @@ public class GUIFrame extends JFrame {
 		setTitle(ShapeSketch.TOOL_NAME);
 		setResizable(false);
 		
-		sToolbar = new ShapeToolbar(250);
-		oToolbar = new OptionsToolbar(250);
+		sToolbar = ShapeToolbar.getShapeToolbar(250);
+		oToolbar = OptionsToolbar.getOptionsToolbar(250);
 		paintArea = PaintPanel.getPaintPanel(new Dimension(500,500));
 		paintArea.setName(PAINT_PANEL_NAME);
 		

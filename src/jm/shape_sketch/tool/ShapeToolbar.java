@@ -2,6 +2,7 @@ package jm.shape_sketch.tool;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,6 +22,7 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 	 */
 	private static final long serialVersionUID = -1467297274836144485L;
 
+	private static ShapeToolbar shapeToolbar;
 	private int height;
 
 	public static final int WIDTH = 31;
@@ -59,7 +61,13 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 	private static final String POLYGON_BUTTON_ROLLOVER_LOCN = "/data/polygon_rollover.png";
 	private static final String POLYGON_BUTTON_SELECT_LOCN = "/data/polygon_selected.png";
 
-	public ShapeToolbar(int length) {
+	public static ShapeToolbar getShapeToolbar(int length) {
+		if (shapeToolbar == null)
+			shapeToolbar = new ShapeToolbar(length);
+		return shapeToolbar;
+	}
+
+	private ShapeToolbar(int length) {
 		super();
 		this.height = length;
 
