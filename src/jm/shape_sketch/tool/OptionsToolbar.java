@@ -172,7 +172,8 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 			OptionsToolbar.lineColor = colorChooser.getColor();
 		} else if (e.getActionCommand().equals("lineThickness")) {
 			// TODO: Set line thickness
-		}
+		} else if (e.getActionCommand().equals("OK"))
+			colorChooser.hide();
 	}
 	
 }

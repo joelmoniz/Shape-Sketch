@@ -1,10 +1,11 @@
 package jm.shape_sketch.tool;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
@@ -127,11 +128,13 @@ public class PaintPanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(1));
 		// g.drawRect(x1, y1, x2 - x1, y2 - y1);
 		for (Shape drawn: shapesList)
-			drawn.drawShape(g);
+			drawn.drawShape(g2);
 		if (currentShape != null)
-			currentShape.drawShape(g);
+			currentShape.drawShape(g2);
 	}
 
 	public Shape getCurrentShape() {

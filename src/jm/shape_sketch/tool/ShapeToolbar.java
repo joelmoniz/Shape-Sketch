@@ -25,6 +25,7 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 	private static ShapeToolbar shapeToolbar;
 	private int height;
 
+	// TODO: Make private as appropriate
 	public static final int WIDTH = 31;
 	public static final int IMAGE_WIDTH = 27;
 	public static final int HORIZONTAL_BN_BORDER = (WIDTH - IMAGE_WIDTH) / 2;
@@ -173,6 +174,7 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 		return b;
 	}
 
+	// TODO: Convert this to neater switch-case as in OptionsToolbar
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals(SQUARE_BUTTON_NAME)) // {
