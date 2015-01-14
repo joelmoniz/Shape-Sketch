@@ -17,12 +17,13 @@ import processing.app.ColorChooser;
 
 public class OptionsToolbar extends JPanel implements ActionListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2679779333943632914L;
 	
 	private static OptionsToolbar optionsToolbar;
+	private static Color fillColor, lineColor, backgroundColor;
+	private static int lineThickness;
+	private static ColorChooser colorChooser;
+	
 	private int width;
 	public static final int HEIGHT = 31;
 	public static final int IMAGE_HEIGHT = 27;
@@ -42,7 +43,11 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 	private OptionsToolbar(int length) {
 		super();
 		this.width = length;
+		fillColor = lineColor = backgroundColor = null;
+		lineThickness = 1;
 
+		colorChooser = new ColorChooser(null, true, Color.RED, "OK",this);
+		
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		setMinimumSize(new Dimension(width, HEIGHT));
 		setPreferredSize(new Dimension(width, HEIGHT));
@@ -72,14 +77,14 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 //		add(Box.createRigidArea(new Dimension(HEIGHT,HEIGHT)));
 		add(new JLabel(new ImageIcon(this.getClass().getResource(
 		DIVIDER_IMG_LOCN))));
-		add(addButton("/data/paintbucket.png", "paintBucket", "/data/paintbucket_rollover.png", "/data/paintbucket_selected.png"));
-		add(addButton("/data/background_color2.png", "background", "/data/background_color_rollover2.png", "/data/background_color_selected.png"));
-		add(addButton("/data/line_color.png", "background", "/data/line_color_rollover.png", "/data/line_color_selected.png"));
-		add(addButton("/data/line_thickness.png", "background", "/data/line_thickness_rollover.png", "/data/line_thickness_selected.png"));
-		add(addButton("/data/size.png", "background", "/data/size_rollover.png", "/data/size_selected.png"));
-		add(addButton("/data/bug.png", "background", "/data/bug_rollover.png", "/data/bug_selected.png"));
-		add(addButton("/data/help.png", "background", "/data/help_rollover.png", "/data/help_selected.png"));
-		add(addButton("/data/reset.png", "background", "/data/reset_rollover.png", "/data/reset_selected.png"));
+		add(addButton("/data/paintbucket.png", "paintbucketColor", "/data/paintbucket_rollover.png", "/data/paintbucket_selected.png"));
+		add(addButton("/data/background_color2.png", "backgroundColor", "/data/background_color_rollover2.png", "/data/background_color_selected.png"));
+		add(addButton("/data/line_color.png", "lineColor", "/data/line_color_rollover.png", "/data/line_color_selected.png"));
+		add(addButton("/data/line_thickness.png", "lineThickness", "/data/line_thickness_rollover.png", "/data/line_thickness_selected.png"));
+		add(addButton("/data/size.png", "size", "/data/size_rollover.png", "/data/size_selected.png"));
+		add(addButton("/data/reset.png", "reset", "/data/reset_rollover.png", "/data/reset_selected.png"));
+		add(addButton("/data/bug.png", "bug", "/data/bug_rollover.png", "/data/bug_selected.png"));
+		add(addButton("/data/help.png", "help", "/data/help_rollover.png", "/data/help_selected.png"));
 		// Add fill toggle
 		// Add background toggle
 	}
@@ -124,17 +129,50 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 		return b;
 	}
 
+	public static Color getFillColor() {
+		return fillColor;
+	}
+
+	public static Color getLineColor() {
+		return lineColor;
+	}
+
+	public static Color getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public static int getLineThickness() {
+		return lineThickness;
+	}
+
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-//		Color color;
-//		new ColorChooser(null, true, Color.RED, "OK", new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				color = Color.RED;
-//			}
-//		}).show();
-		new ColorChooser(null, true, Color.RED, "OK",this).show();
+	public void actionPerformed(ActionEvent e) {
+		// Color color;
+		// new ColorChooser(null, true, Color.RED, "OK", new ActionListener() {
+		//
+		// @Override
+		// public void actionPerformed(ActionEvent e) {
+		// color = Color.RED;
+		// }
+		// }).show();
+		if (e.getActionCommand().equals("paintbucketColor")) {
+			if (OptionsToolbar.fillColor != null)
+				colorChooser.setColor(OptionsToolbar.fillColor);
+			colorChooser.show();
+			OptionsToolbar.fillColor = colorChooser.getColor();
+		} else if (e.getActionCommand().equals("backgroundColor")) {
+			if (OptionsToolbar.backgroundColor != null)
+				colorChooser.setColor(OptionsToolbar.backgroundColor);
+			colorChooser.show();
+			OptionsToolbar.backgroundColor = colorChooser.getColor();
+		} else if (e.getActionCommand().equals("lineColor")) {
+			if (OptionsToolbar.lineColor != null)
+				colorChooser.setColor(OptionsToolbar.lineColor);
+			colorChooser.show();
+			OptionsToolbar.lineColor = colorChooser.getColor();
+		} else if (e.getActionCommand().equals("lineThickness")) {
+			// TODO: Set line thickness
+		}
 	}
 	
 }
