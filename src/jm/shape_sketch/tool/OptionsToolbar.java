@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import processing.app.ColorChooser;
+import processing.app.ui.ColorChooser;
 
 public class OptionsToolbar extends JPanel implements ActionListener {
 

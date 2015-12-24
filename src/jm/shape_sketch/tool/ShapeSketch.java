@@ -42,7 +42,7 @@ public class ShapeSketch implements Tool {
 	}
 
 	@Override
-	public void init(Editor theEditor) {
+	public void init(Base base) {
 	}
 
 	@Override
