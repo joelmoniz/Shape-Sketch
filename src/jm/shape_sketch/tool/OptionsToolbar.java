@@ -82,11 +82,12 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 		add(addButton("/data/line_color.png", "lineColor", "/data/line_color_rollover.png", "/data/line_color_selected.png"));
 		add(addButton("/data/line_thickness.png", "lineThickness", "/data/line_thickness_rollover.png", "/data/line_thickness_selected.png"));
 		add(addButton("/data/size.png", "size", "/data/size_rollover.png", "/data/size_selected.png"));
-		add(addButton("/data/reset.png", "reset", "/data/reset_rollover.png", "/data/reset_selected.png"));
+		// TODO: Commenting out undo, to be added in later
+		//		add(addButton("/data/reset.png", "reset", "/data/reset_rollover.png", "/data/reset_selected.png"));
 		add(addButton("/data/bug.png", "bug", "/data/bug_rollover.png", "/data/bug_selected.png"));
 		add(addButton("/data/help.png", "help", "/data/help_rollover.png", "/data/help_selected.png"));
-		// Add fill toggle
-		// Add background toggle
+		// TODO: Add fill toggle
+		// TODO: Add background toggle
 	}
 
 	private JButton addButton(String imageLocation, String buttonName,

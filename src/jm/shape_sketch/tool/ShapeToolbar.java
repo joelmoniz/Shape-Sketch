@@ -92,8 +92,9 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 				RECT_BUTTON_ROLLOVER_LOCN, RECT_BUTTON_SELECT_LOCN, group));
 		add(addRadioButton(LINE_BUTTON_IMG_LOCN, LINE_BUTTON_NAME,
 				LINE_BUTTON_ROLLOVER_LOCN, LINE_BUTTON_SELECT_LOCN, group));
-		add(addRadioButton(POLYGON_BUTTON_IMG_LOCN, POLYGON_BUTTON_NAME,
-				POLYGON_BUTTON_ROLLOVER_LOCN, POLYGON_BUTTON_SELECT_LOCN, group));
+		// TODO: Commenting out polygon for now, to be added in later
+//		add(addRadioButton(POLYGON_BUTTON_IMG_LOCN, POLYGON_BUTTON_NAME,
+//				POLYGON_BUTTON_ROLLOVER_LOCN, POLYGON_BUTTON_SELECT_LOCN, group));
 	}
 
 	private JRadioButton addRadioButton(String imageLocation, String buttonName,
