@@ -128,6 +128,7 @@ public class PaintPanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		setBackground(OptionsToolbar.getBackgroundColor() == null ? Color.WHITE : OptionsToolbar.getBackgroundColor());
 		Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(1));
 		// g.drawRect(x1, y1, x2 - x1, y2 - y1);

@@ -166,6 +166,9 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 				colorChooser.setColor(OptionsToolbar.backgroundColor);
 			colorChooser.show();
 			OptionsToolbar.backgroundColor = colorChooser.getColor();
+			PaintPanel p = PaintPanel.getPaintPanel();
+			if (p != null)
+			  p.repaint();
 		} else if (e.getActionCommand().equals("lineColor")) {
 			if (OptionsToolbar.lineColor != null)
 				colorChooser.setColor(OptionsToolbar.lineColor);
