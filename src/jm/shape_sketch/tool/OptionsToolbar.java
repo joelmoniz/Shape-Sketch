@@ -1,5 +1,6 @@
 package jm.shape_sketch.tool;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -21,7 +22,7 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 	
 	private static OptionsToolbar optionsToolbar;
 	private static Color fillColor, lineColor, backgroundColor;
-	private static int lineThickness;
+	private static BasicStroke lineThicknessStroke;
 	private static ColorChooser colorChooser;
 	
 	private int width;
@@ -44,7 +45,7 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 		super();
 		this.width = length;
 		fillColor = lineColor = backgroundColor = null;
-		lineThickness = 1;
+		lineThicknessStroke = new BasicStroke(1);
 
 		colorChooser = new ColorChooser(null, true, Color.RED, "OK",this);
 		
@@ -142,8 +143,8 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 		return backgroundColor;
 	}
 
-	public static int getLineThickness() {
-		return lineThickness;
+	public static BasicStroke getLineThickness() {
+		return lineThicknessStroke;
 	}
 
 	@Override

@@ -23,7 +23,7 @@ public class Shape {
 	private Point startingPoint, endPoint;
 	
 	private Color lineColor, fillColor;
-	private int lineThickness;
+	private BasicStroke lineThicknessStroke;
 	private boolean isFilled, isStroked;
 
 	public enum ShapeTypes {
@@ -107,7 +107,7 @@ public class Shape {
 	private void colourize() {
 		this.lineColor = OptionsToolbar.getLineColor() == null ? Color.BLACK : OptionsToolbar.getLineColor();
 		this.fillColor = OptionsToolbar.getFillColor() == null ? (OptionsToolbar.getBackgroundColor() == null ? new Color(255,255,255,0) : OptionsToolbar.getBackgroundColor()) : OptionsToolbar.getFillColor();
-		this.lineThickness = OptionsToolbar.getLineThickness();
+		this.lineThicknessStroke = OptionsToolbar.getLineThickness();
 		this.isFilled = OptionsToolbar.getFillColor() == null;
 		this.isStroked = OptionsToolbar.getLineColor() == null;
 	}
@@ -161,10 +161,12 @@ public class Shape {
 	        g.fillOval((int)ellipse.getMinX(), (int)ellipse.getMinY(), (int)ellipse.getWidth(), (int)ellipse.getHeight());      
 //	        g.setStroke(new BasicStroke(1.0f));
 	        g.setColor(lineColor);
+	        g.setStroke(lineThicknessStroke);
 	        g.drawOval((int)ellipse.getMinX(), (int)ellipse.getMinY(), (int)ellipse.getWidth(), (int)ellipse.getHeight());      
 			break;
 		case LINE:
 			g.setColor(lineColor);
+			g.setStroke(lineThicknessStroke);
 			g.drawLine(startingPoint.x, startingPoint.y, endPoint.x, endPoint.y);
 			break;
 		case POINT:
@@ -174,6 +176,7 @@ public class Shape {
 		case SQUARE:
 		case RECTANGLE:
 			g.setColor(fillColor);
+			g.setStroke(lineThicknessStroke);
 //			g.fillRect(rectangle.x+1,rectangle.y+1,rectangle.width-1,rectangle.height-1);
 			g.fillRect(rectangle.x,rectangle.y,rectangle.width,rectangle.height);
 			g.setColor(lineColor);
