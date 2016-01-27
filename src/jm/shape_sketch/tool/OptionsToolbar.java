@@ -10,8 +10,13 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.border.Border;
 
 import processing.app.ui.ColorChooser;
@@ -177,8 +182,26 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 			OptionsToolbar.lineColor = colorChooser.getColor();
 		} else if (e.getActionCommand().equals("lineThickness")) {
 			// TODO: Set line thickness
+		  getLineThicknessFromUser();
 		} else if (e.getActionCommand().equals("OK"))
 			colorChooser.hide();
+	}
+	
+	public void getLineThicknessFromUser() {
+	  final JSpinner lineThickness = new JSpinner(new SpinnerNumberModel(lineThicknessStroke.getLineWidth(), 1.0, 100.0, 1.0));
+	  final JComponent[] comps = new JComponent[] {
+	    new JLabel("Thickness"),
+	    lineThickness
+	  };
+//	  JOptionPane.showOptionDialog(null, null, "Line Thckness", JOptionPane.OK_CANCEL_OPTION, arg4, arg5, arg6, arg7)
+	  int ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), comps, "Line Thckness", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+	  if (ans == JOptionPane.OK_OPTION) {
+	    double t = (Double)(lineThickness.getValue());
+	    lineThicknessStroke = new BasicStroke((float)t);
+	  }
+//	    System.out.println("Cancelled");
+//	  else
+//	    System.out.println("OK: " + lineThickness.getText());
 	}
 	
 }
