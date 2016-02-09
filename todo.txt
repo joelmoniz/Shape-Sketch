@@ -2,25 +2,52 @@
 #Read bottom up to get priority order.
 
 As of 0.0.1
-[]Add object rotator
-[]Add object resizer
-[]Add object mover
-[]Add object eraser
-[]Add fill
-[]Print axes of ellipse
-[]Axes of ellipse
-[]Add general polygon
-[]Print Length, breadth of rect/sq
-[]Add general line
+[ ] Add object rotator
+[ ] Add object resizer
+[ ] Add object mover
+[ ] Add object eraser
+[ ] Add fill
+[ ] Print axes of ellipse
+[ ] Axes of ellipse
+[ ] Add general polygon
+[ ] Print Length, breadth of rect/sq
 x--Etd. ready for release--x
-[]Add background
-[]Label on hoverd selector
-[]Add colour picker
-[]Add fill color selector
-[]Add stroke color selector
-[]Add stroke width selector
-[]Add cursor tracker
-[]Add ellipse
-[]Add circle
-[]Add rect
-[]Add square
+[ ] Add general line
+    [X] Button Design
+    [X] Draw on Canvas
+    [ ] Convert to Code
+[ ] Add background
+    [X] Button Design
+    [X] Draw on Canvas
+    [ ] Convert to Code
+[ ] Label on hovered selector
+[X] Add colour picker
+[ ] Add fill color selector
+    [X] Button Design
+    [X] Draw on Canvas
+    [ ] Convert to Code
+[ ] Add stroke color selector
+    [X] Button Design
+    [X] Draw on Canvas
+    [ ] Convert to Code
+[ ] Add stroke width selector
+    [X] Button Design
+    [X] Draw on Canvas
+    [ ] Convert to Code
+[ ] Add cursor tracker
+[ ] Add ellipse
+    [X] Button Design
+    [X] Draw on Canvas
+    [ ] Convert to Code
+[ ] Add circle
+    [X] Button Design
+    [X] Draw on Canvas
+    [ ] Convert to Code
+[ ] Add rect
+    [X] Button Design
+    [X] Draw on Canvas
+    [ ] Convert to Code
+[ ] Add square
+    [X] Button Design
+    [X] Draw on Canvas
+    [ ] Convert to Code
