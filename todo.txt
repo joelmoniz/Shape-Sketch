@@ -11,7 +11,14 @@ As of 0.0.1
 [ ] Axes of ellipse
 [ ] Add general polygon
 [ ] Print Length, breadth of rect/sq
+[ ] Work on button placement
+    [ ] Add a separator before the "convert to code" button
+    [ ] Shift "Report bug" and "help" to right
 x--Etd. ready for release--x
+[ ] Report a bug
+[ ] Help menu
+    [ ] Design screen
+    [ ] Add menu
 [ ] Add general line
     [X] Button Design
     [X] Draw on Canvas
@@ -20,7 +27,7 @@ x--Etd. ready for release--x
     [X] Button Design
     [X] Draw on Canvas
     [ ] Convert to Code
-[ ] Label on hovered selector
+[ ] Labels on hovered selector
 [X] Add colour picker
 [ ] Add fill color selector
     [X] Button Design

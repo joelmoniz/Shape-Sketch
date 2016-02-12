@@ -7,11 +7,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import jm.shape_sketch.tool.shapes.Shape.ShapeTypes;
@@ -61,6 +65,10 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 	private static final String POLYGON_BUTTON_IMG_LOCN = "/data/polygon.png";
 	private static final String POLYGON_BUTTON_ROLLOVER_LOCN = "/data/polygon_rollover.png";
 	private static final String POLYGON_BUTTON_SELECT_LOCN = "/data/polygon_selected.png";
+  private static final String TO_CODE_BUTTON_NAME = "toCodeButton";
+  private static final String TO_CODE_BUTTON_IMG_LOCN = "/data/to_code.png";
+  private static final String TO_CODE_BUTTON_ROLLOVER_LOCN = "/data/to_code_rollover.png";
+  private static final String TO_CODE_BUTTON_SELECT_LOCN = "/data/to_code_selected.png";
 
 	public static ShapeToolbar getShapeToolbar(int length) {
 		if (shapeToolbar == null)
@@ -95,6 +103,15 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 		// TODO: Commenting out polygon for now, to be added in later
 //		add(addRadioButton(POLYGON_BUTTON_IMG_LOCN, POLYGON_BUTTON_NAME,
 //				POLYGON_BUTTON_ROLLOVER_LOCN, POLYGON_BUTTON_SELECT_LOCN, group));
+//		add(Box.createVerticalStrut(10));
+    // TODO: There's something not quite the way it should be happening here :(
+//		add(new JSeparator(SwingConstants.HORIZONTAL));
+//		add(Box.createVerticalStrut(10));
+		add(Box.createRigidArea(new Dimension(0, 20)));
+		add(addButton(TO_CODE_BUTTON_IMG_LOCN, TO_CODE_BUTTON_NAME,
+                       TO_CODE_BUTTON_ROLLOVER_LOCN, TO_CODE_BUTTON_SELECT_LOCN));
+//    add(Box.createVerticalGlue());
+//    add(Box.createVerticalGlue());
 	}
 
 	private JRadioButton addRadioButton(String imageLocation, String buttonName,
@@ -174,6 +191,48 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 		group.add(b);
 		return b;
 	}
+	
+//TODO: Duplicated code from OptionsToolbar. Look at how to tidy up the code here later (likely with better class design).
+  private JButton addButton(String imageLocation, String buttonName,
+                            String rolloverImageLocation,
+                            String selectedImageLocation) {
+    final JButton b = new JButton();
+    ImageIcon icon = new ImageIcon(this.getClass().getResource(imageLocation));
+    ImageIcon rolloverIcon = new ImageIcon(this.getClass()
+        .getResource(rolloverImageLocation));
+    ImageIcon selectedIcon = new ImageIcon(this.getClass()
+        .getResource(selectedImageLocation));
+
+    b.setIcon(icon);
+    b.setRolloverEnabled(true);
+    b.setRolloverIcon(rolloverIcon);
+    b.setSelectedIcon(selectedIcon);
+    b.setPressedIcon(selectedIcon);
+    b.setRolloverSelectedIcon(selectedIcon);
+
+    Dimension bnDimension = new Dimension(IMAGE_WIDTH, IMAGE_WIDTH);
+    b.setPreferredSize(bnDimension);
+    b.setMinimumSize(bnDimension);
+    b.setMaximumSize(bnDimension);
+
+    b.setFocusPainted(false);
+    b.setBackground(BACKGROUND);
+    b.setOpaque(false);
+    b.setContentAreaFilled(false);
+    b.setBorderPainted(false);
+
+    final Border emptyBorder = BorderFactory
+        .createEmptyBorder(VERTICAL_BN_BORDER, HORIZONTAL_BN_BORDER,
+                           VERTICAL_BN_BORDER, HORIZONTAL_BN_BORDER);
+    b.setBorder(emptyBorder);
+
+    b.setName(buttonName);
+    b.setActionCommand(buttonName);
+
+    b.addActionListener(this);
+
+    return b;
+  }
 
 	// TODO: Convert this to neater switch-case as in OptionsToolbar
 	@Override
@@ -204,6 +263,8 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 		else if (e.getActionCommand().equals(POLYGON_BUTTON_NAME))
 			PaintPanel.getPaintPanel().setCurrentShapeType(ShapeTypes.POLYGON);// (new
 																				// Shape(ShapeTypes.POLYGON));
+		else if (e.getActionCommand().equals(TO_CODE_BUTTON_NAME))
+		  ;// TODO: Convert shapes to code
 	}
 
 }
