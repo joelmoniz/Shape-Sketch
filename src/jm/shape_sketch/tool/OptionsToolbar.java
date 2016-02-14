@@ -183,8 +183,9 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 			colorChooser.show();
 			OptionsToolbar.lineColor = colorChooser.getColor();
 		} else if (e.getActionCommand().equals("lineThickness")) {
-			// TODO: Set line thickness
-		  getLineThicknessFromUser();
+		  float thickness = (float)getLineThicknessFromUser();
+		  if (thickness > 0)
+		    lineThicknessStroke = new BasicStroke(thickness);
 		} else if (e.getActionCommand().equals("OK"))
 			colorChooser.hide();
 		else if (e.getActionCommand().equals("size")) {
@@ -195,7 +196,7 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 		}
 	}
 	
-	public void getLineThicknessFromUser() {
+	public double getLineThicknessFromUser() {
 	  final JSpinner lineThickness = new JSpinner(new SpinnerNumberModel(lineThicknessStroke.getLineWidth(), 1.0, 100.0, 1.0));
 	  final JComponent[] comps = new JComponent[] {
 	    new JLabel("Thickness"),
@@ -205,11 +206,12 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 	  int ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), comps, "Line Thckness", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	  if (ans == JOptionPane.OK_OPTION) {
 	    double t = (Double)(lineThickness.getValue());
-	    lineThicknessStroke = new BasicStroke((float)t);
+	    return t;
 	  }
 //	    System.out.println("Cancelled");
 //	  else
 //	    System.out.println("OK: " + lineThickness.getText());
+	  return -1.0;
 	}
   
   public Dimension getDimensionFromUser() {
