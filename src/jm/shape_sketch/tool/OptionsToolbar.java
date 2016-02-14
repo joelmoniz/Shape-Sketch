@@ -1,7 +1,6 @@
 package jm.shape_sketch.tool;
 
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
@@ -10,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,6 +21,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.Border;
 
+import processing.app.Platform;
 import processing.app.ui.ColorChooser;
 
 public class OptionsToolbar extends JPanel implements ActionListener {
@@ -41,6 +42,8 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 	public static final Color BACKGROUND = new Color(240, 240, 240);
 
 	private static final String DIVIDER_IMG_LOCN = "/data/divider.png";
+
+  private static final String URL_BUG = "https://github.com/joelmoniz/Shape-Sketch/issues/new";
 
 	public static OptionsToolbar getOptionsToolbar(int length) {
 		if (optionsToolbar == null)
@@ -91,11 +94,12 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 		add(addButton("/data/line_thickness.png", "lineThickness", "/data/line_thickness_rollover.png", "/data/line_thickness_selected.png"));
 		add(addButton("/data/size.png", "size", "/data/size_rollover.png", "/data/size_selected.png"));
 		// TODO: Commenting out undo, to be added in later
-		//		add(addButton("/data/reset.png", "reset", "/data/reset_rollover.png", "/data/reset_selected.png"));
-		add(addButton("/data/bug.png", "bug", "/data/bug_rollover.png", "/data/bug_selected.png"));
-		add(addButton("/data/help.png", "help", "/data/help_rollover.png", "/data/help_selected.png"));
+		//		add(addButton("/data/reset.png", "reset", "/data/reset_rollover.png", "/data/reset_selected.png"));  
+    add(addButton("/data/bug.png", "bug", "/data/bug_rollover.png", "/data/bug_selected.png"));
+//		add(addButton("/data/help.png", "help", "/data/help_rollover.png", "/data/help_selected.png"));
 		// TODO: Add fill toggle
 		// TODO: Add background toggle
+		// TODO: Add line color toggle
 	}
 
 	private JButton addButton(String imageLocation, String buttonName,
@@ -193,6 +197,9 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 		  if (newDim != null) {
 		    GUIFrame.adjustSize(newDim);
 		  }
+		}
+		else if (e.getActionCommand().equals("bug")) {
+		  Platform.openURL(OptionsToolbar.URL_BUG);
 		}
 	}
 	
