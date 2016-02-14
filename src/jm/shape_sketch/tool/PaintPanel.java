@@ -20,6 +20,8 @@ import jm.shape_sketch.tool.shapes.Shape.ShapeTypes;
 public class PaintPanel extends JPanel {
 	private static final long serialVersionUID = 3592247058189697712L;
 
+	public static final Color DEFAULT_BACKGROUND = new Color(204, 204, 204);
+	
 	public static PaintPanel paintPanel;
 
 	private int x1, x2, y1, y2;
@@ -128,7 +130,7 @@ public class PaintPanel extends JPanel {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		setBackground(OptionsToolbar.getBackgroundColor() == null ? Color.WHITE : OptionsToolbar.getBackgroundColor());
+		setBackground(OptionsToolbar.getBackgroundColor() == null ? PaintPanel.DEFAULT_BACKGROUND : OptionsToolbar.getBackgroundColor());
 		Graphics2D g2 = (Graphics2D) g;
         g2.setStroke(new BasicStroke(1));
 		// g.drawRect(x1, y1, x2 - x1, y2 - y1);

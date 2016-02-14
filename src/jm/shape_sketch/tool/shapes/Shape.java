@@ -106,7 +106,7 @@ public class Shape {
 	
 	private void colourize() {
 		this.lineColor = OptionsToolbar.getLineColor() == null ? Color.BLACK : OptionsToolbar.getLineColor();
-		this.fillColor = OptionsToolbar.getFillColor() == null ? (OptionsToolbar.getBackgroundColor() == null ? new Color(255,255,255,0) : OptionsToolbar.getBackgroundColor()) : OptionsToolbar.getFillColor();
+		this.fillColor = OptionsToolbar.getFillColor() == null ? (OptionsToolbar.getBackgroundColor() == null ? PaintPanel.DEFAULT_BACKGROUND : OptionsToolbar.getBackgroundColor()) : OptionsToolbar.getFillColor();
 		this.lineThicknessStroke = OptionsToolbar.getLineThickness();
 		this.isFilled = OptionsToolbar.getFillColor() == null;
 		this.isStroked = OptionsToolbar.getLineColor() == null;
