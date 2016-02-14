@@ -12,13 +12,20 @@ As of 0.0.1
 [ ] Add general polygon
 [ ] Print Length, breadth of rect/sq
 [ ] Work on button placement
-    [ ] Add a separator before the "convert to code" button
+    [X] Add a separator before the "convert to code" button
     [ ] Shift "Report bug" and "help" to right
-x--Etd. ready for release--x
-[ ] Report a bug
 [ ] Help menu
     [ ] Design screen
     [ ] Add menu
+x--First Update--x
+[ ] Undo
+[ ] Labels on hovered selector
+[ ] Add cursor tracker
+x--Etd. ready for release--x
+[X] Report a bug
+[ ] Convert to Code button
+    [X] Button Design
+    [ ] Inserting converted code
 [ ] Add general line
     [X] Button Design
     [X] Draw on Canvas
@@ -27,7 +34,6 @@ x--Etd. ready for release--x
     [X] Button Design
     [X] Draw on Canvas
     [ ] Convert to Code
-[ ] Labels on hovered selector
 [X] Add colour picker
 [ ] Add fill color selector
     [X] Button Design
@@ -41,7 +47,6 @@ x--Etd. ready for release--x
     [X] Button Design
     [X] Draw on Canvas
     [ ] Convert to Code
-[ ] Add cursor tracker
 [ ] Add ellipse
     [X] Button Design
     [X] Draw on Canvas
