@@ -268,7 +268,7 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 			PaintPanel.getPaintPanel().setCurrentShapeType(ShapeTypes.POLYGON);// (new
 																				// Shape(ShapeTypes.POLYGON));
 		else if (e.getActionCommand().equals(TO_CODE_BUTTON_NAME))
-		  ;// TODO: Convert shapes to code
+		  System.out.println(PaintPanel.convertShapesToCode());
 	}
 
 }

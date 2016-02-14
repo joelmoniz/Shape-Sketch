@@ -12,6 +12,8 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import processing.app.Base;
+
 @SuppressWarnings("serial")
 public class GUIFrame extends JFrame {
 	
@@ -26,7 +28,7 @@ public class GUIFrame extends JFrame {
 	static final int DEFAULT_WIDTH = 500;
   static final int DEFAULT_HEIGHT = 500;
 
-	private GUIFrame(){
+	private GUIFrame(Base base){
 		super();
 		
 		Dimension drawingArea = OptionsToolbar.getDimensionFromUser();
@@ -37,7 +39,7 @@ public class GUIFrame extends JFrame {
 		
 		oToolbar = OptionsToolbar.getOptionsToolbar(250);
     sToolbar = ShapeToolbar.getShapeToolbar(250);
-		paintArea = PaintPanel.getPaintPanel((drawingArea==null) ? new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT) : drawingArea);
+		paintArea = PaintPanel.getPaintPanel((drawingArea==null) ? new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT) : drawingArea, base);
 		paintArea.setName(PAINT_PANEL_NAME);
 		
 		addWindowListener(new WindowAdapter() {
@@ -56,11 +58,15 @@ public class GUIFrame extends JFrame {
 		pack();
 	}
 	
-	public static GUIFrame getGUIFrame() {
+	public static GUIFrame getGUIFrame(Base base) {
 		if (mainFrame == null)
-			mainFrame = new GUIFrame();
+			mainFrame = new GUIFrame(base);
 		return mainFrame;
 	}
+  
+  public static GUIFrame getGUIFrame() {
+    return mainFrame;
+  }
 	
 	public void setupGUIFrameComponents() {
 		outerPanel.add(sToolbar,BorderLayout.LINE_START);

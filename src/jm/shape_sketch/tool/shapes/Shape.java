@@ -11,6 +11,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 
 import jm.shape_sketch.tool.OptionsToolbar;
+import jm.shape_sketch.tool.PaintPanel;
 
 public class Shape {
 
@@ -112,7 +113,19 @@ public class Shape {
 		this.isStroked = OptionsToolbar.getLineColor() == null;
 	}
 	
-	public void setEndPoints(int x1, int x2, int y1, int y2) {
+	public Color getLineColor() {
+    return lineColor;
+  }
+
+  public Color getFillColor() {
+    return fillColor;
+  }
+
+  public int getLineThickness() {
+    return (int)lineThicknessStroke.getLineWidth();
+  }
+
+  public void setEndPoints(int x1, int x2, int y1, int y2) {
 		colourize();
 		switch (type) {
 		case LINE:
@@ -187,4 +200,75 @@ public class Shape {
 			break;
 		}
 	}
+
+  public String toCode(boolean codeFillColor, boolean codeLineColor, boolean codeLineThickness) {
+    StringBuilder sb = new StringBuilder("");
+    if (codeFillColor) {
+      sb.append("fill(");
+      sb.append(fillColor.getRed());
+      sb.append(',');
+      sb.append(fillColor.getGreen());
+      sb.append(',');
+      sb.append(fillColor.getBlue());
+      sb.append(");");
+    }
+    if (codeLineColor) {
+      sb.append("stroke(");
+      sb.append(lineColor.getRed());
+      sb.append(',');
+      sb.append(lineColor.getGreen());
+      sb.append(',');
+      sb.append(lineColor.getBlue());
+      sb.append(");");
+    }
+    if (codeLineThickness) {
+      sb.append("strokeWeight(");
+      sb.append((int)lineThicknessStroke.getLineWidth());
+      sb.append(");");
+    }
+    switch (type) {
+    case CIRCLE:
+    case ELLIPSE:
+      sb.append("ellipse(");
+      sb.append((float)(ellipse.getMinX()+ellipse.getWidth()/2.0));
+      sb.append(",");
+      sb.append((float)(ellipse.getMinY()+ellipse.getHeight()/2.0));
+      sb.append(",");
+      sb.append((float)ellipse.getWidth());
+      sb.append(",");
+      sb.append((float)ellipse.getHeight());
+      sb.append(");");
+      break;
+    case LINE:
+      sb.append("line(");
+      sb.append((float)startingPoint.x);
+      sb.append(",");
+      sb.append((float)startingPoint.y);
+      sb.append(",");
+      sb.append((float)endPoint.x);
+      sb.append(",");
+      sb.append((float)endPoint.y);
+      sb.append(");");
+      break;
+    case POINT:
+      break;
+    case POLYGON:
+      break;
+    case SQUARE:
+    case RECTANGLE:
+      sb.append("rect(");
+      sb.append((float)rectangle.x);
+      sb.append(",");
+      sb.append((float)rectangle.y);
+      sb.append(",");
+      sb.append((float)rectangle.width);
+      sb.append(",");
+      sb.append((float)rectangle.height);
+      sb.append(");");
+      break;
+    default:
+      break;
+    }
+    return sb.toString();
+  }
 }

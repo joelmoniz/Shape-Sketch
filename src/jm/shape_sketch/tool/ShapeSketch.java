@@ -35,6 +35,7 @@ public class ShapeSketch implements Tool {
 	// build.properties
 
 	public static final String TOOL_NAME = "##tool.name##";
+	Base bass;
 
 	@Override
 	public String getMenuTitle() {
@@ -43,13 +44,14 @@ public class ShapeSketch implements Tool {
 
 	@Override
 	public void init(Base base) {
+	  bass = base;
 	}
 
 	@Override
 	public void run() {
 		System.out
 				.println(TOOL_NAME + " v##tool.prettyVersion## by ##author##");
-		GUIFrame.getGUIFrame().setVisible(true);
+		GUIFrame.getGUIFrame(bass).setVisible(true);
 	}
 
 	public static void main(String[] args) {

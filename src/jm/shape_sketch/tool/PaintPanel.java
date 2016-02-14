@@ -11,11 +11,18 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import jm.shape_sketch.tool.shapes.Shape;
 import jm.shape_sketch.tool.shapes.Shape.ShapeTypes;
+import processing.app.Base;
+import processing.app.Formatter;
 
 public class PaintPanel extends JPanel {
 	private static final long serialVersionUID = 3592247058189697712L;
@@ -30,6 +37,11 @@ public class PaintPanel extends JPanel {
 	private Shape currentShape = null;
 	
 	private ShapeTypes currentShapeType = null;
+	
+	private static int methodNumber = 0;
+	
+	private static Base base;
+	private static Formatter formatter;
 
 	public static PaintPanel getPaintPanel(Dimension size) {
 		if (paintPanel == null && size != null)
@@ -40,6 +52,24 @@ public class PaintPanel extends JPanel {
 	public static PaintPanel getPaintPanel() {
 		return paintPanel;
 	}
+
+  public static PaintPanel getPaintPanel(Dimension size, Base base) {
+    if (paintPanel == null && size != null) {
+      if (base == null) {
+        paintPanel = new PaintPanel(size);
+      }
+      else {
+        paintPanel = new PaintPanel(size, base);
+      }
+    }
+    return paintPanel;
+  }
+
+  private PaintPanel(Dimension size, Base base) {
+    this(size);
+    PaintPanel.base = base;
+    PaintPanel.formatter = base.getActiveEditor().createFormatter();
+  }
 
 	private PaintPanel(Dimension size) {
 		super();
@@ -162,6 +192,98 @@ public class PaintPanel extends JPanel {
   
   public static int getHeightToAdjust() {
     return (paintPanel == null || paintPanel.getHeight() == 0)? GUIFrame.DEFAULT_HEIGHT : paintPanel.getHeight();
+  }
+
+  public static String convertShapesToCode() {
+    StringBuilder codeBuilder = new StringBuilder("void ");
+    
+    String mName = getMethodName();
+    if (mName == null) {
+      codeBuilder.append("shapeSketch");
+      codeBuilder.append(methodNumber++);
+    }
+    else {
+      codeBuilder.append(mName);
+    }
+    
+    codeBuilder.append("(){");
+    
+    if (OptionsToolbar.getBackgroundColor() != null) {
+      codeBuilder.append("background(");
+      codeBuilder.append(OptionsToolbar.getBackgroundColor().getRed());
+      codeBuilder.append(",");
+      codeBuilder.append(OptionsToolbar.getBackgroundColor().getGreen());
+      codeBuilder.append(",");
+      codeBuilder.append(OptionsToolbar.getBackgroundColor().getBlue());
+      codeBuilder.append(");");
+    }      
+    
+    Color prevStrokeColor = paintPanel.shapesList.get(0).getLineColor();
+    Color prevFillColor = paintPanel.shapesList.get(0).getFillColor();
+    int prevThickness = paintPanel.shapesList.get(0).getLineThickness();
+    
+    Color currStrokeColor, currFillColor;
+    int currThickness;
+    
+    // TODO: codeFillColor
+    boolean codeFillColor = !((OptionsToolbar.getBackgroundColor() == prevFillColor)||(OptionsToolbar.getBackgroundColor() == null && prevFillColor==PaintPanel.DEFAULT_BACKGROUND));//(OptionsToolbar.getBackgroundColor() == null) ? !prevFillColor.equals(PaintPanel.DEFAULT_BACKGROUND) : OptionsToolbar.getBackgroundColor());
+    boolean codeLineColor = !prevStrokeColor.equals(Color.BLACK);
+    boolean codeLineThickness = !(prevThickness == 1);
+    codeBuilder.append(paintPanel.shapesList.get(0).toCode(codeFillColor, codeLineColor, codeLineThickness));
+    
+    for (int i=1; i<paintPanel.shapesList.size(); i++) {
+      currStrokeColor = paintPanel.shapesList.get(i).getLineColor();
+      currFillColor = paintPanel.shapesList.get(i).getFillColor();
+      currThickness = paintPanel.shapesList.get(i).getLineThickness();
+      
+      codeBuilder.append(paintPanel.shapesList.get(i).toCode(!currFillColor.equals(prevFillColor), !currStrokeColor.equals(prevStrokeColor), prevThickness!=currThickness));
+      
+      prevStrokeColor = currStrokeColor;
+      prevFillColor = currFillColor;
+      prevThickness = currThickness;
+    }
+    
+    codeBuilder.append("}");
+    return formatter.format(codeBuilder.toString());
+  }
+
+  private static String getMethodName() {
+      final JTextField methodName = new JTextField();
+      final JComponent[] comps = new JComponent[] {
+        new JLabel("Method name:"),
+        methodName
+      };
+//      JOptionPane.showOptionDialog(null, null, "Line Thckness", JOptionPane.OK_CANCEL_OPTION, arg4, arg5, arg6, arg7)
+      int ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), comps, "Line Thickness", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+      if (ans == JOptionPane.OK_OPTION) {
+        String name = methodName.getText();
+        while (ans == JOptionPane.OK_OPTION && !isValidFunctionName(name)) {
+          Object[] optionK = {"OK"};
+          JOptionPane.showOptionDialog(PaintPanel.getPaintPanel(), 
+                              "<html>Please enter a valid method name. A valid name can be any combination<br>"
+                                  + "of letters, numbers, and underscores (but cannot start with a number).</html>",
+                               "Line Thickness",
+                               JOptionPane.PLAIN_MESSAGE,
+                               JOptionPane.PLAIN_MESSAGE,
+                               null,
+                               optionK,
+                               optionK[0]);
+          ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), comps, "Line Thickness", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+          name = methodName.getText();
+        }
+        if (ans == JOptionPane.OK_OPTION && isValidFunctionName(name))
+          return name;
+        else
+          return null;
+      }
+      return null;
+  }
+  
+  private static boolean isValidFunctionName(String fn) {
+    if (fn == null || fn.split("\\s+").length > 1)
+      return false;
+    Pattern FN_NAME_PATTERN = Pattern.compile("^[a-zA-Z_][a-zA-Z0-9_]*$");
+    return FN_NAME_PATTERN.matcher(fn).find();
   }
 
 }
