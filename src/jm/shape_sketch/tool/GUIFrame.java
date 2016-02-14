@@ -29,13 +29,15 @@ public class GUIFrame extends JFrame {
 	private GUIFrame(){
 		super();
 		
+		Dimension drawingArea = OptionsToolbar.getDimensionFromUser();
+		
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setTitle(ShapeSketch.TOOL_NAME);
 		setResizable(false);
 		
 		oToolbar = OptionsToolbar.getOptionsToolbar(250);
     sToolbar = ShapeToolbar.getShapeToolbar(250);
-		paintArea = PaintPanel.getPaintPanel(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+		paintArea = PaintPanel.getPaintPanel((drawingArea==null) ? new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT) : drawingArea);
 		paintArea.setName(PAINT_PANEL_NAME);
 		
 		addWindowListener(new WindowAdapter() {

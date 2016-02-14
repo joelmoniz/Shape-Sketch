@@ -196,14 +196,14 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 		}
 	}
 	
-	public double getLineThicknessFromUser() {
+	public static double getLineThicknessFromUser() {
 	  final JSpinner lineThickness = new JSpinner(new SpinnerNumberModel(lineThicknessStroke.getLineWidth(), 1.0, 100.0, 1.0));
 	  final JComponent[] comps = new JComponent[] {
 	    new JLabel("Thickness"),
 	    lineThickness
 	  };
 //	  JOptionPane.showOptionDialog(null, null, "Line Thckness", JOptionPane.OK_CANCEL_OPTION, arg4, arg5, arg6, arg7)
-	  int ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), comps, "Line Thckness", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+	  int ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), comps, "Line Thickness", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	  if (ans == JOptionPane.OK_OPTION) {
 	    double t = (Double)(lineThickness.getValue());
 	    return t;
@@ -214,13 +214,13 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 	  return -1.0;
 	}
   
-  public Dimension getDimensionFromUser() {
+  public static Dimension getDimensionFromUser() {
     
     final JPanel dimensionPanel = new JPanel(new FlowLayout());
     dimensionPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-    dimensionPanel.add(new JLabel("Dimension (width x height): "));
-    final JSpinner width = new JSpinner(new SpinnerNumberModel(PaintPanel.getWidthToAdjust(), 170, Integer.MAX_VALUE, 1));
-    final JSpinner height = new JSpinner(new SpinnerNumberModel(PaintPanel.getHeightToAdjust(), 215, Integer.MAX_VALUE, 1));
+    dimensionPanel.add(new JLabel("Sketch Size: "));
+    final JSpinner width = new JSpinner(new SpinnerNumberModel(PaintPanel.getWidthToAdjust(), 170, Integer.MAX_VALUE, 10));
+    final JSpinner height = new JSpinner(new SpinnerNumberModel(PaintPanel.getHeightToAdjust(), 215, Integer.MAX_VALUE, 10));
     dimensionPanel.add(width);
     dimensionPanel.add(new JLabel("x"));
     dimensionPanel.add(height);
@@ -235,7 +235,7 @@ public class OptionsToolbar extends JPanel implements ActionListener {
     popupPanel.add(dimensionPanel);
     // TODO: Maybe add in a description?
 //    int ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), popupPanel, "Line Thckness", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
-    int ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), dimensionPanel, "Line Thckness", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+    int ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), dimensionPanel, "Sketch Size (width x height)", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
     if (ans == JOptionPane.OK_OPTION) {
       return new Dimension((Integer)width.getValue(), (Integer)height.getValue());
     }
