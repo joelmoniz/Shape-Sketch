@@ -222,7 +222,7 @@ public class PaintPanel extends JPanel {
     int currThickness;
     
     // TODO: codeFillColor
-    boolean codeFillColor = !((OptionsToolbar.getBackgroundColor() == prevFillColor)||(OptionsToolbar.getBackgroundColor() == null && prevFillColor==PaintPanel.DEFAULT_BACKGROUND));//(OptionsToolbar.getBackgroundColor() == null) ? !prevFillColor.equals(PaintPanel.DEFAULT_BACKGROUND) : OptionsToolbar.getBackgroundColor());
+    boolean codeFillColor = !prevFillColor.equals(Shape.DEFAULT_FILL); 
     boolean codeLineColor = !prevStrokeColor.equals(Color.BLACK);
     boolean codeLineThickness = !(prevThickness == 1);
     codeBuilder.append(paintPanel.shapesList.get(0).toCode(codeFillColor, codeLineColor, codeLineThickness));

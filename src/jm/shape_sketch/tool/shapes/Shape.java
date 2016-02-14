@@ -15,7 +15,8 @@ import jm.shape_sketch.tool.PaintPanel;
 
 public class Shape {
 
-	private Rectangle rectangle = null;
+	public static final Color DEFAULT_FILL = Color.WHITE;
+  private Rectangle rectangle = null;
 	private Line2D line = null;
 	private Point2D point = null;
 	private Ellipse2D ellipse = null;
@@ -107,7 +108,7 @@ public class Shape {
 	
 	private void colourize() {
 		this.lineColor = OptionsToolbar.getLineColor() == null ? Color.BLACK : OptionsToolbar.getLineColor();
-		this.fillColor = OptionsToolbar.getFillColor() == null ? (OptionsToolbar.getBackgroundColor() == null ? PaintPanel.DEFAULT_BACKGROUND : OptionsToolbar.getBackgroundColor()) : OptionsToolbar.getFillColor();
+		this.fillColor = OptionsToolbar.getFillColor() == null ? Shape.DEFAULT_FILL : OptionsToolbar.getFillColor();
 		this.lineThicknessStroke = OptionsToolbar.getLineThickness();
 		this.isFilled = OptionsToolbar.getFillColor() == null;
 		this.isStroked = OptionsToolbar.getLineColor() == null;
