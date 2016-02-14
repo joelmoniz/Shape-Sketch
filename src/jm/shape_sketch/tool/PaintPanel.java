@@ -195,17 +195,13 @@ public class PaintPanel extends JPanel {
   }
 
   public static String convertShapesToCode() {
-    StringBuilder codeBuilder = new StringBuilder("void ");
-    
     String mName = getMethodName();
-    if (mName == null) {
-      codeBuilder.append("shapeSketch");
-      codeBuilder.append(methodNumber++);
-    }
-    else {
-      codeBuilder.append(mName);
-    }
     
+    if (mName == null)
+      return  null;
+    
+    StringBuilder codeBuilder = new StringBuilder("void ");
+    codeBuilder.append(mName);
     codeBuilder.append("(){");
     
     if (OptionsToolbar.getBackgroundColor() != null) {
@@ -249,6 +245,10 @@ public class PaintPanel extends JPanel {
 
   private static String getMethodName() {
       final JTextField methodName = new JTextField();
+      
+      // TODO: Replace this with a hint instead?
+      methodName.setText("shapeSketch" + methodNumber);
+      
       final JComponent[] comps = new JComponent[] {
         new JLabel("Method name:"),
         methodName
@@ -271,8 +271,11 @@ public class PaintPanel extends JPanel {
           ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), comps, "Line Thickness", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
           name = methodName.getText();
         }
-        if (ans == JOptionPane.OK_OPTION && isValidFunctionName(name))
+        if (ans == JOptionPane.OK_OPTION && isValidFunctionName(name)) {
+          if (name.equals("shapeSketch" + methodNumber))
+            methodNumber++;
           return name;
+        }
         else
           return null;
       }
@@ -287,9 +290,14 @@ public class PaintPanel extends JPanel {
   }
 
   public static void appendShapesCodeToActiveEditor() {
+    String fnCode = PaintPanel.convertShapesToCode();
+    
+    if (fnCode == null)
+      return;
+    
     StringBuilder sb = new StringBuilder(base.getActiveEditor().getText());
     sb.append("\n\n");
-    sb.append(PaintPanel.convertShapesToCode());
+    sb.append(fnCode);
     base.getActiveEditor().setText(sb.toString());
   }
 
