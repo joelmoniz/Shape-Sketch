@@ -153,5 +153,13 @@ public class PaintPanel extends JPanel {
 	public void setCurrentShapeType(ShapeTypes currentShapeType) {
 		this.currentShapeType = currentShapeType;
 	}
+	
+	public static int getWidthToAdjust() {
+	  return (paintPanel == null || paintPanel.getWidth() == 0)? GUIFrame.DEFAULT_WIDTH : paintPanel.getWidth();
+	}
+  
+  public static int getHeightToAdjust() {
+    return (paintPanel == null || paintPanel.getHeight() == 0)? GUIFrame.DEFAULT_HEIGHT : paintPanel.getHeight();
+  }
 
 }

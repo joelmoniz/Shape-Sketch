@@ -1,8 +1,11 @@
 package jm.shape_sketch.tool;
 
 import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,7 +18,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
-import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.Border;
 
@@ -185,6 +187,12 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 		  getLineThicknessFromUser();
 		} else if (e.getActionCommand().equals("OK"))
 			colorChooser.hide();
+		else if (e.getActionCommand().equals("size")) {
+		  Dimension newDim = getDimensionFromUser();
+		  if (newDim != null) {
+		    GUIFrame.adjustSize(newDim);
+		  }
+		}
 	}
 	
 	public void getLineThicknessFromUser() {
@@ -203,5 +211,34 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 //	  else
 //	    System.out.println("OK: " + lineThickness.getText());
 	}
-	
+  
+  public Dimension getDimensionFromUser() {
+    
+    final JPanel dimensionPanel = new JPanel(new FlowLayout());
+    dimensionPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+    dimensionPanel.add(new JLabel("Dimension (width x height): "));
+    final JSpinner width = new JSpinner(new SpinnerNumberModel(PaintPanel.getWidthToAdjust(), 170, Integer.MAX_VALUE, 1));
+    final JSpinner height = new JSpinner(new SpinnerNumberModel(PaintPanel.getHeightToAdjust(), 215, Integer.MAX_VALUE, 1));
+    dimensionPanel.add(width);
+    dimensionPanel.add(new JLabel("x"));
+    dimensionPanel.add(height);
+//    dimensionPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
+
+    final JPanel popupPanel = new JPanel();
+    popupPanel.setLayout(new BoxLayout(popupPanel, BoxLayout.PAGE_AXIS));
+//    popupPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+    JLabel descr = new JLabel("<html>Enter the required dimensions of the Shape-Sketch draw area.<br>Usually, this is identical to the sketch's dimension.<br>Note that the tool becomes unusable for dimensions smaller than 170 x 215.</html>");
+//    descr.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+    popupPanel.add(descr);
+    popupPanel.add(dimensionPanel);
+    // TODO: Maybe add in a description?
+//    int ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), popupPanel, "Line Thckness", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+    int ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), dimensionPanel, "Line Thckness", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+    if (ans == JOptionPane.OK_OPTION) {
+      return new Dimension((Integer)width.getValue(), (Integer)height.getValue());
+    }
+    
+    return null;
+  }
+
 }

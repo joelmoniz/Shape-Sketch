@@ -16,12 +16,15 @@ import javax.swing.JPanel;
 public class GUIFrame extends JFrame {
 	
 	static GUIFrame mainFrame;
-	private JPanel outerPanel;
+	public JPanel outerPanel;
 	private ShapeToolbar sToolbar;
 	private OptionsToolbar oToolbar;
 	private PaintPanel paintArea;
 	
 	private static final String PAINT_PANEL_NAME = "paintPanel";
+  
+	static final int DEFAULT_WIDTH = 500;
+  static final int DEFAULT_HEIGHT = 500;
 
 	private GUIFrame(){
 		super();
@@ -32,7 +35,7 @@ public class GUIFrame extends JFrame {
 		
 		oToolbar = OptionsToolbar.getOptionsToolbar(250);
     sToolbar = ShapeToolbar.getShapeToolbar(250);
-		paintArea = PaintPanel.getPaintPanel(new Dimension(500,500));
+		paintArea = PaintPanel.getPaintPanel(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
 		paintArea.setName(PAINT_PANEL_NAME);
 		
 		addWindowListener(new WindowAdapter() {
@@ -63,4 +66,13 @@ public class GUIFrame extends JFrame {
 		outerPanel.add(paintArea,BorderLayout.CENTER);
 		add(outerPanel);
 	}
+
+  public static void adjustSize(Dimension newDim) {
+    PaintPanel.getPaintPanel().setPreferredSize(newDim);
+    PaintPanel.getPaintPanel().setMaximumSize(newDim);
+    PaintPanel.getPaintPanel().setMinimumSize(newDim);
+    // Not required- automatically called:
+//    GUIFrame.getGUIFrame().outerPanel.revalidate();
+    GUIFrame.getGUIFrame().pack();
+  }
 }
