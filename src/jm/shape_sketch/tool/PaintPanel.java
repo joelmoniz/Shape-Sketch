@@ -286,4 +286,11 @@ public class PaintPanel extends JPanel {
     return FN_NAME_PATTERN.matcher(fn).find();
   }
 
+  public static void appendShapesCodeToActiveEditor() {
+    StringBuilder sb = new StringBuilder(base.getActiveEditor().getText());
+    sb.append("\n\n");
+    sb.append(PaintPanel.convertShapesToCode());
+    base.getActiveEditor().setText(sb.toString());
+  }
+
 }
