@@ -17,8 +17,10 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import processing.app.Platform;
@@ -94,7 +96,14 @@ public class OptionsToolbar extends JPanel implements ActionListener {
 		add(addButton("/data/line_thickness.png", "lineThickness", "/data/line_thickness_rollover.png", "/data/line_thickness_selected.png"));
 		add(addButton("/data/size.png", "size", "/data/size_rollover.png", "/data/size_selected.png"));
 		// TODO: Commenting out undo, to be added in later
-		//		add(addButton("/data/reset.png", "reset", "/data/reset_rollover.png", "/data/reset_selected.png"));  
+		//		add(addButton("/data/reset.png", "reset", "/data/reset_rollover.png", "/data/reset_selected.png"));
+	
+  add(Box.createHorizontalStrut(10));
+  JSeparator vertSeperator = new JSeparator(SwingConstants.VERTICAL);
+  vertSeperator.setMaximumSize( new Dimension(1, Integer.MAX_VALUE) );
+  add(vertSeperator);
+  add(Box.createHorizontalStrut(10));
+  
     add(addButton("/data/bug.png", "bug", "/data/bug_rollover.png", "/data/bug_selected.png"));
 //		add(addButton("/data/help.png", "help", "/data/help_rollover.png", "/data/help_selected.png"));
 		// TODO: Add fill toggle

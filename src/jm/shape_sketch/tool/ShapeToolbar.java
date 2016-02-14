@@ -103,11 +103,15 @@ public class ShapeToolbar extends JPanel implements ActionListener {
 		// TODO: Commenting out polygon for now, to be added in later
 //		add(addRadioButton(POLYGON_BUTTON_IMG_LOCN, POLYGON_BUTTON_NAME,
 //				POLYGON_BUTTON_ROLLOVER_LOCN, POLYGON_BUTTON_SELECT_LOCN, group));
-//		add(Box.createVerticalStrut(10));
-    // TODO: There's something not quite the way it should be happening here :(
-//		add(new JSeparator(SwingConstants.HORIZONTAL));
-//		add(Box.createVerticalStrut(10));
-		add(Box.createRigidArea(new Dimension(0, 20)));
+		
+		// Thank you StackOverflow!!
+		// http://stackoverflow.com/a/20802743/2427542
+		add(Box.createVerticalStrut(10));
+	  JSeparator horzSeperator = new JSeparator(SwingConstants.HORIZONTAL);
+	  horzSeperator.setMaximumSize( new Dimension(Integer.MAX_VALUE, 1) );
+	  add(horzSeperator);
+		add(Box.createVerticalStrut(10));
+		
 		add(addButton(TO_CODE_BUTTON_IMG_LOCN, TO_CODE_BUTTON_NAME,
                        TO_CODE_BUTTON_ROLLOVER_LOCN, TO_CODE_BUTTON_SELECT_LOCN));
 //    add(Box.createVerticalGlue());
