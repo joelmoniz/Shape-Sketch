@@ -17,49 +17,59 @@ As of 0.0.1
 [ ] Help menu
     [ ] Design screen
     [ ] Add menu
+x--Second Update--x
+[ ] Add transparency
+[ ] Enable toggling
+    [ ] Fill color
+    [ ] Line stroke
+    [ ] Background color
+    [ ] Line color
+[ ] Shift key for straight line
+[ ] Esc key to stop drawing current shape
 x--First Update--x
 [ ] Undo
 [ ] Labels on hovered selector
 [ ] Add cursor tracker
+
 x--Etd. ready for release--x
 [X] Report a bug
-[ ] Convert to Code button
+[X] Convert to Code button
     [X] Button Design
-    [ ] Inserting converted code
-[ ] Add general line
-    [X] Button Design
-    [X] Draw on Canvas
-    [ ] Convert to Code
-[ ] Add background
+    [X] Inserting converted code
+[X] Add general line
     [X] Button Design
     [X] Draw on Canvas
-    [ ] Convert to Code
+    [X] Convert to Code
+[X] Add background
+    [X] Button Design
+    [X] Draw on Canvas
+    [X] Convert to Code
 [X] Add colour picker
-[ ] Add fill color selector
+[X] Add fill color selector
     [X] Button Design
     [X] Draw on Canvas
-    [ ] Convert to Code
-[ ] Add stroke color selector
+    [X] Convert to Code
+[X] Add stroke color selector
     [X] Button Design
     [X] Draw on Canvas
-    [ ] Convert to Code
-[ ] Add stroke width selector
+    [X] Convert to Code
+[X] Add stroke width selector
     [X] Button Design
     [X] Draw on Canvas
-    [ ] Convert to Code
-[ ] Add ellipse
+    [X] Convert to Code
+[X] Add ellipse
     [X] Button Design
     [X] Draw on Canvas
-    [ ] Convert to Code
-[ ] Add circle
+    [X] Convert to Code
+[X] Add circle
     [X] Button Design
     [X] Draw on Canvas
-    [ ] Convert to Code
-[ ] Add rect
+    [X] Convert to Code
+[X] Add rect
     [X] Button Design
     [X] Draw on Canvas
-    [ ] Convert to Code
-[ ] Add square
+    [X] Convert to Code
+[X] Add square
     [X] Button Design
     [X] Draw on Canvas
-    [ ] Convert to Code
+    [X] Convert to Code
