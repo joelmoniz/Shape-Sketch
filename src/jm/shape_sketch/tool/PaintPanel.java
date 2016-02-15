@@ -195,6 +195,20 @@ public class PaintPanel extends JPanel {
   }
 
   public static String convertShapesToCode() {
+    
+    if (OptionsToolbar.getBackgroundColor() == null && paintPanel.shapesList.isEmpty()) {
+      Object[] optionK = {"OK"};
+      JOptionPane.showOptionDialog(PaintPanel.getPaintPanel(), 
+                          "<html>Nothing has been drawn yet. The function will be empty.</html>",
+                           "Shapes to Code",
+                           JOptionPane.PLAIN_MESSAGE,
+                           JOptionPane.PLAIN_MESSAGE,
+                           null,
+                           optionK,
+                           optionK[0]);
+      return null;
+    }
+    
     String mName = getMethodName();
     
     if (mName == null)
@@ -214,29 +228,31 @@ public class PaintPanel extends JPanel {
       codeBuilder.append(");");
     }      
     
-    Color prevStrokeColor = paintPanel.shapesList.get(0).getLineColor();
-    Color prevFillColor = paintPanel.shapesList.get(0).getFillColor();
-    int prevThickness = paintPanel.shapesList.get(0).getLineThickness();
-    
-    Color currStrokeColor, currFillColor;
-    int currThickness;
-    
-    // TODO: codeFillColor
-    boolean codeFillColor = !prevFillColor.equals(Shape.DEFAULT_FILL); 
-    boolean codeLineColor = !prevStrokeColor.equals(Color.BLACK);
-    boolean codeLineThickness = !(prevThickness == 1);
-    codeBuilder.append(paintPanel.shapesList.get(0).toCode(codeFillColor, codeLineColor, codeLineThickness));
-    
-    for (int i=1; i<paintPanel.shapesList.size(); i++) {
-      currStrokeColor = paintPanel.shapesList.get(i).getLineColor();
-      currFillColor = paintPanel.shapesList.get(i).getFillColor();
-      currThickness = paintPanel.shapesList.get(i).getLineThickness();
+    if (paintPanel.shapesList.size() > 0) {
+      Color prevStrokeColor = paintPanel.shapesList.get(0).getLineColor();
+      Color prevFillColor = paintPanel.shapesList.get(0).getFillColor();
+      int prevThickness = paintPanel.shapesList.get(0).getLineThickness();
       
-      codeBuilder.append(paintPanel.shapesList.get(i).toCode(!currFillColor.equals(prevFillColor), !currStrokeColor.equals(prevStrokeColor), prevThickness!=currThickness));
+      Color currStrokeColor, currFillColor;
+      int currThickness;
       
-      prevStrokeColor = currStrokeColor;
-      prevFillColor = currFillColor;
-      prevThickness = currThickness;
+      // TODO: codeFillColor
+      boolean codeFillColor = !prevFillColor.equals(Shape.DEFAULT_FILL); 
+      boolean codeLineColor = !prevStrokeColor.equals(Color.BLACK);
+      boolean codeLineThickness = !(prevThickness == 1);
+      codeBuilder.append(paintPanel.shapesList.get(0).toCode(codeFillColor, codeLineColor, codeLineThickness));
+      
+      for (int i=1; i<paintPanel.shapesList.size(); i++) {
+        currStrokeColor = paintPanel.shapesList.get(i).getLineColor();
+        currFillColor = paintPanel.shapesList.get(i).getFillColor();
+        currThickness = paintPanel.shapesList.get(i).getLineThickness();
+        
+        codeBuilder.append(paintPanel.shapesList.get(i).toCode(!currFillColor.equals(prevFillColor), !currStrokeColor.equals(prevStrokeColor), prevThickness!=currThickness));
+        
+        prevStrokeColor = currStrokeColor;
+        prevFillColor = currFillColor;
+        prevThickness = currThickness;
+      }
     }
     
     codeBuilder.append("}");
@@ -254,7 +270,7 @@ public class PaintPanel extends JPanel {
         methodName
       };
 //      JOptionPane.showOptionDialog(null, null, "Line Thckness", JOptionPane.OK_CANCEL_OPTION, arg4, arg5, arg6, arg7)
-      int ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), comps, "Line Thickness", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+      int ans = JOptionPane.showConfirmDialog(PaintPanel.getPaintPanel(), comps, "Shapes to Code", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
       if (ans == JOptionPane.OK_OPTION) {
         String name = methodName.getText();
         while (ans == JOptionPane.OK_OPTION && !isValidFunctionName(name)) {
@@ -262,7 +278,7 @@ public class PaintPanel extends JPanel {
           JOptionPane.showOptionDialog(PaintPanel.getPaintPanel(), 
                               "<html>Please enter a valid method name. A valid name can be any combination<br>"
                                   + "of letters, numbers, and underscores (but cannot start with a number).</html>",
-                               "Line Thickness",
+                               "Shapes to Code",
                                JOptionPane.PLAIN_MESSAGE,
                                JOptionPane.PLAIN_MESSAGE,
                                null,
