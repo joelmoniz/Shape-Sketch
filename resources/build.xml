@@ -270,9 +270,12 @@ ${line}
                 
         <replaceregexp file="${file}" match="##tool.version##" replace="${tool.version}" flags="g" />
         <replaceregexp file="${file}" match="##tool.prettyVersion##" replace="${tool.prettyVersion}" flags="g" /> 
+        <replaceregexp file="${file}" match="##tool.minRevision##" replace="${tool.minRevision}" flags="g" /> 
+    	<replaceregexp file="${file}" match="##tool.maxRevision##" replace="${tool.maxRevision}" flags="g" />
+    	<replaceregexp file="${file}" match="##tool.lastUpdated##" replace="${tool.lastUpdated}" flags="g" /> 
         
         <replaceregexp file="${file}" match="##tool.url##" replace="${tool.url}" flags="g" />
-        <replaceregexp file="${file}" match="##tool.category##" replace="${tool.category}" flags="g" />
+        <replaceregexp file="${file}" match="##tool.categories##" replace="${tool.categories}" flags="g" />
         <replaceregexp file="${file}" match="##tool.sentence##" replace="${tool.sentence}" flags="g" />
         <replaceregexp file="${file}" match="##tool.paragraph##" replace="${tool.paragraph}" flags="g" />
         <replaceregexp file="${file}" match="##tool.keywords##" replace="${tool.keywords}" flags="g" />
