@@ -28,6 +28,7 @@ x--Second Update--x
 [ ] Esc key to stop drawing current shape
 x--First Update--x
 [ ] Undo
+[ ] Scrap (clear everything, start afresh- #2)
 [ ] Labels on hovered selector
 [ ] Add cursor tracker
 
